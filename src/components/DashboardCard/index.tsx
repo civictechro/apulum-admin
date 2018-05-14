@@ -39,5 +39,4 @@ class DashboardCard extends Component<IDashboardCardProps, {}> {
   }
 };
 
-
 export default DashboardCard;
