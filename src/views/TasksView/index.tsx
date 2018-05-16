@@ -4,6 +4,7 @@ import { Component } from 'react';
 import { Query } from "react-apollo";
 import gql from 'graphql-tag'
 import { List, Avatar } from 'antd';
+import GraphQLResponseHandler from '../../components/GraphQLResponseHandler';
 
 const tasksQuery = gql`
   query tasks {
@@ -45,16 +46,9 @@ class TasksView extends Component {
    return (
     <Query query={tasksQuery}>
       {({ loading, error, data }) => {
-        if (loading) {
-          return <p>Loading...</p>;
+        if (loading || error) {
+          return <GraphQLResponseHandler error={error} loading={loading} />
         }
-
-        if (error) {
-          console.log(error);
-          return <p>Error :(</p>;
-        }
-
-        console.log(loading, error, data);
 
         return (
           <div>
