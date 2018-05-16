@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import { Spin, Alert } from 'antd';
+import { Spin, Alert, Card } from 'antd';
 import React from 'react';
 
 interface IGraphQLResponseHandlerProps {
@@ -13,12 +13,17 @@ class GraphQLResponseHandler extends Component<IGraphQLResponseHandlerProps, {}>
   render() {
     const { loading, error } = this.props;
     if (loading) {
-      return <Spin size="large" />;
+      return (
+        <Card>
+          <Spin style={{ margin: "0 auto", display: "block", padding: "20px" }} size="large" />
+        </Card>
+      );
     }
 
     if (error) {
       return (
         <Alert
+          style={{ margin: "0 auto" }}
           message="Error"
           description="Error ocurred, please try again later"
           type="error"

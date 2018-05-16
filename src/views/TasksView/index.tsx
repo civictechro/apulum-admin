@@ -3,7 +3,7 @@ import { Component } from 'react';
 
 import { Query } from "react-apollo";
 import gql from 'graphql-tag'
-import { List, Avatar } from 'antd';
+import { List, Card, Avatar } from 'antd';
 import GraphQLResponseHandler from '../../components/GraphQLResponseHandler';
 
 const tasksQuery = gql`
@@ -33,7 +33,7 @@ class TasksView extends Component {
     return (
       <List.Item actions={[<a key="edit">edit</a>, <a key="more">more</a>]} key={item.id}>
         <List.Item.Meta
-          avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+          avatar={<Avatar size="small" icon="check" />}
           title={<a href="">{item.title}</a>}
           description={item.description}
         />
@@ -51,13 +51,13 @@ class TasksView extends Component {
         }
 
         return (
-          <div>
+          <Card>
             <List
               itemLayout="horizontal"
               dataSource={data.tasks}
               renderItem={this.getListItem}
             />
-          </div>
+          </Card>
         );
       }}
     </Query>

@@ -12,6 +12,8 @@ import App from './App';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
+import { fragmentMatcher } from './utils/fragmentMatcher';
+
 const client = new ApolloClient({
   link: ApolloLink.from([
     onError(({ graphQLErrors, networkError }) => {
@@ -32,7 +34,7 @@ const client = new ApolloClient({
       credentials: 'include'
     })
   ]),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache({ fragmentMatcher })
 });
 
 const WrappedApp = (
