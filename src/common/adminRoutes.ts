@@ -1,5 +1,6 @@
-// import DashboardView from "../views/DashboardView";
+import ProfileView from "../views/ProfileView";
 import EmptyView from "../views/EmptyView";
+import TasksView from "../views/TasksView";
 
 export const adminRoutes = [
   {
@@ -7,7 +8,7 @@ export const adminRoutes = [
     icon: 'layout',
     path: '/admin/tasks',
     showMenu: true,
-    view: EmptyView,
+    view: TasksView,
   },
   {
     name: 'Panou de control',
@@ -27,6 +28,6 @@ export const adminRoutes = [
     icon: 'user',
     path: '/admin/me',
     showMenu: true,
-    view: EmptyView,
+    view: ProfileView,
   },
 ];

@@ -16,7 +16,7 @@ import {
 import { adminRoutes } from '../../common/adminRoutes';
 import { Route } from 'react-router-dom';
 
-const { Header, Sider, Content } = Layout;
+const { Header, Sider, Content, Footer } = Layout;
 const { Search } = Input;
 
 const styles = {
@@ -97,7 +97,13 @@ class AdminLayout extends React.Component<IAdminLayoutProps, {}> {
     this.props.history.push(key);
   }
 
+  capitalize = (el: string) => {
+    return el.charAt(0).toUpperCase() + el.slice(1);
+  }
+
   render() {
+    const breadcrumbs = this.props.location.pathname.split('/');
+
     return (
       <Layout>
         <Sider
@@ -130,6 +136,7 @@ class AdminLayout extends React.Component<IAdminLayoutProps, {}> {
                     <span>{element.name}</span>
                   </Menu.Item>
                 );
+
               })
             }
           </Menu>
@@ -171,8 +178,19 @@ class AdminLayout extends React.Component<IAdminLayoutProps, {}> {
           </Header>
 
           <Breadcrumb style={{ margin: '16px 24px', marginBottom: 0 }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
+            {
+              breadcrumbs.map((element: string) => {
+                if (!element) {
+                  return;
+                }
+
+                return (
+                  <Breadcrumb.Item key={element}>
+                    {this.capitalize(element)}
+                  </Breadcrumb.Item>
+                );
+              })
+            }
           </Breadcrumb>
           <Content style={{ margin: '16px 16px', padding: 24, background: '#fff', minHeight: 300, overflow: 'initial' }}>
             {
@@ -184,6 +202,9 @@ class AdminLayout extends React.Component<IAdminLayoutProps, {}> {
               })
             }
           </Content>
+          <Footer style={{ textAlign: 'center' }}>
+            CivicTech România © 2018
+          </Footer>
         </Layout>
       </Layout>
     );

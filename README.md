@@ -44,3 +44,9 @@ Tests are written with Jest, you'll find them in `__tests__` folders or names `f
 ```
 $> yarn test
 ```
+
+## GraphQL Integration
+```
+$> apollo-codegen introspect-schema http://localhost:4000 --output src/schema.json
+$> apollo-codegen generate src/**/**/*.graphql --schema src/schema.json --target typescript --output src/types/graphql-types.ts
+```
