@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { Component } from 'react';
 
-import { Query } from "react-apollo";
+import { Query, Mutation } from "react-apollo";
 import gql from 'graphql-tag'
-import { List, Card, Avatar } from 'antd';
+import { List, Card, Avatar, Button, Modal, Form, Input } from 'antd';
 import GraphQLResponseHandler from '../../components/GraphQLResponseHandler';
+
+const FormItem = Form.Item;
 
 const tasksQuery = gql`
   query tasks {
@@ -28,7 +30,31 @@ const tasksQuery = gql`
   }
 `
 
+const createTaskMutation = gql`
+  mutation createTaskMutation($userId: ID!, $title: String!, $description: String!) {
+    createTask(userId: $userId, title: $title, description: $description) {
+      path
+      message
+    }
+  }
+`
+
+const meQuery = gql`
+  query meOnTasks {
+    me {
+      id
+      email
+      firstName
+      lastName
+    }
+  }
+`
+
 class TasksView extends Component {
+  state = {
+    isAddTaskModalOpen: false,
+  }
+
   getListItem = (item: any) => {
     return (
       <List.Item actions={[<a key="edit">edit</a>, <a key="more">more</a>]} key={item.id}>
@@ -42,26 +68,113 @@ class TasksView extends Component {
     );
   }
 
-  render(): JSX.Element {
-   return (
-    <Query query={tasksQuery}>
-      {({ loading, error, data }) => {
-        if (loading || error) {
-          return <GraphQLResponseHandler error={error} loading={loading} />
-        }
+  openNewTaskModal = () =>
+    this.setState({ isAddTaskModalOpen: true });
 
-        return (
-          <Card>
-            <List
-              itemLayout="horizontal"
-              dataSource={data.tasks}
-              renderItem={this.getListItem}
-            />
-          </Card>
-        );
-      }}
-    </Query>
-   );
+  closeNewTaskModal = () =>
+    this.setState({  isAddTaskModalOpen: false });
+
+  toggleNewTaskModal = () =>
+    this.setState({ isAddTaskModalOpen: !this.state.isAddTaskModalOpen });
+
+  render(): JSX.Element {
+    let title: any = {};
+    let description: any = {};
+
+    return (
+      <Card>
+        <Button
+          onClick={this.openNewTaskModal}
+          type="dashed"
+          icon="plus"
+          size="large"
+          style={{ width: "100%", marginBottom: 20}}>
+          Adauga task nou
+        </Button>
+
+        <Modal
+          title="Adauga task nou"
+          wrapClassName="vertical-center-modal"
+          visible={this.state.isAddTaskModalOpen}
+          onOk={this.closeNewTaskModal}
+          onCancel={this.closeNewTaskModal}
+        >
+        <Query query={meQuery}>
+        {({ loading: qloading, error: qerror, data: qdata }) => {
+          if (qloading || qerror) {
+            return <GraphQLResponseHandler error={qerror} loading={qloading} />
+          }
+
+          return (
+            <Mutation mutation={createTaskMutation}>
+              {(createTask, { data, loading, error }) => {
+                if (loading || error) {
+                  return <GraphQLResponseHandler error={error} loading={loading} />
+                }
+
+                // tslint:disable jsx-no-lambda
+                return (
+                  <Card>
+                    <Form onSubmit={e => {
+                        e.preventDefault();
+                        createTask({
+                          variables: {
+                            userId: qdata.me.id,
+                            title: title.input.value,
+                            description: description.input.value
+                          }
+                        })
+
+                        title = {};
+                        description = {};
+                      }}
+                      style={{ maxWidth: "300px" }}>
+                      <FormItem>
+                        <Input
+                          placeholder="Titlu task"
+                          ref={node => { title = node; }}
+                        />
+                      </FormItem>
+
+                      <FormItem>
+                        <Input
+                          placeholder="Descriere task"
+                          ref={node => { description = node; }}
+                        />
+                      </FormItem>
+
+                      <FormItem>
+                        <Button type="primary" htmlType="submit">
+                          Adauga
+                        </Button>
+                      </FormItem>
+
+                    </Form>
+                  </Card>
+                );
+              }}
+            </Mutation>
+          );}}
+          </Query>
+        </Modal>
+
+        <Query query={tasksQuery}>
+          {({ loading, error, data }) => {
+            if (loading || error) {
+              return <GraphQLResponseHandler error={error} loading={loading} />
+            }
+
+            return (
+              <List
+                itemLayout="horizontal"
+                dataSource={data.tasks}
+                renderItem={this.getListItem}
+              />
+            );
+          }}
+        </Query>
+      </Card>
+    );
   }
 }
 

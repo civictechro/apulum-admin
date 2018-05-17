@@ -1,6 +1,15 @@
 /* tslint:disable */
 //  This file was automatically generated and should not be edited.
 
+export interface meQuery {
+  me:  {
+    id: string,
+    email: string,
+    firstName: string | null,
+    lastName: string | null,
+  } | null,
+};
+
 export interface loginMutationVariables {
   email: string,
   password: string,
@@ -20,7 +29,7 @@ export interface meLoginQuery {
   } | null,
 };
 
-export interface meQuery {
+export interface meOnProfileQuery {
   me:  {
     id: string,
     email: string,
@@ -36,10 +45,16 @@ export interface updateUserMutationMutationVariables {
 };
 
 export interface updateUserMutationMutation {
-  updateUser:  Array< {
-    path: string,
-    message: string,
-  } > | null,
+  updateUser:  Array<( {
+      path: string,
+      message: string,
+    } | {
+      id: string,
+      email: string,
+      firstName: string | null,
+      lastName: string | null,
+    }
+  ) > | null,
 };
 
 export interface tasksQuery {
@@ -60,4 +75,26 @@ export interface tasksQuery {
       lastName: string | null,
     } | null,
   } > | null,
+};
+
+export interface createTaskMutationMutationVariables {
+  userId: string,
+  title: string,
+  description: string,
+};
+
+export interface createTaskMutationMutation {
+  createTask:  Array< {
+    path: string,
+    message: string,
+  } > | null,
+};
+
+export interface meOnTasksQuery {
+  me:  {
+    id: string,
+    email: string,
+    firstName: string | null,
+    lastName: string | null,
+  } | null,
 };

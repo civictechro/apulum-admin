@@ -9,7 +9,7 @@ import GraphQLResponseHandler from '../../components/GraphQLResponseHandler';
 const FormItem = Form.Item;
 
 const meQuery = gql`
-  query me {
+  query meOnProfile {
     me {
       id
       email
