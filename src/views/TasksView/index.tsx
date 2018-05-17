@@ -58,6 +58,7 @@ const meQuery = gql`
 `
 
 class TasksView extends Component {
+
   state = {
     isAddTaskModalOpen: false,
   }

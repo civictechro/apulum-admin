@@ -37,6 +37,7 @@ const updateUserMutation = gql`
 `
 
 class ProfileView extends Component {
+
   render(): JSX.Element {
     let firstName: any = {};
     let lastName: any = {};

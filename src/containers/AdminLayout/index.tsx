@@ -217,7 +217,6 @@ class AdminLayout extends React.Component<IAdminLayoutProps, {}> {
                   {
                     adminRoutes.map(element => {
                       return (
-                        // tslint:disable-next-line jsx-no-lambda
                         <Route exact={true} key={element.path} path={element.path} component={element.view} />
                       );
                     })
