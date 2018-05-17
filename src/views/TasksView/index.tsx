@@ -33,8 +33,15 @@ const tasksQuery = gql`
 const createTaskMutation = gql`
   mutation createTaskMutation($userId: ID!, $title: String!, $description: String!) {
     createTask(userId: $userId, title: $title, description: $description) {
-      path
-      message
+      ... on Error {
+        path
+        message
+      }
+      ... on Task {
+        id
+        title
+        description
+      }
     }
   }
 `

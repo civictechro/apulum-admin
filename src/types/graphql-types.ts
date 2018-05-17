@@ -84,10 +84,15 @@ export interface createTaskMutationMutationVariables {
 };
 
 export interface createTaskMutationMutation {
-  createTask:  Array< {
-    path: string,
-    message: string,
-  } > | null,
+  createTask:  Array<( {
+      path: string,
+      message: string,
+    } | {
+      id: string,
+      title: string,
+      description: string,
+    }
+  ) > | null,
 };
 
 export interface meOnTasksQuery {

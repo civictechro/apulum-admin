@@ -841,8 +841,8 @@
                   "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Error",
+                    "kind": "UNION",
+                    "name": "MaybeTask",
                     "ofType": null
                   }
                 }
@@ -1184,6 +1184,27 @@
           "interfaces": [],
           "enumValues": null,
           "possibleTypes": null
+        },
+        {
+          "kind": "UNION",
+          "name": "MaybeTask",
+          "description": "",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": [
+            {
+              "kind": "OBJECT",
+              "name": "Error",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Task",
+              "ofType": null
+            }
+          ]
         },
         {
           "kind": "UNION",
