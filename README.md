@@ -1,4 +1,6 @@
 # Kármán CMS
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcivictechro%2Fapulum-admin.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcivictechro%2Fapulum-admin?ref=badge_shield)
+
 
 Just a codename.
 
@@ -111,3 +113,7 @@ Mutation {
 ----------
 
 **Made with :heart: & :coffee: by [CivicTech România](https://civictech.ro/)**
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcivictechro%2Fapulum-admin.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcivictechro%2Fapulum-admin?ref=badge_large)
