@@ -65,10 +65,16 @@ class TasksView extends Component {
 
   getListItem = (item: any) => {
     return (
-      <List.Item actions={[<a key="edit">edit</a>, <a key="more">more</a>]} key={item.id}>
+      <List.Item actions={[
+          <a key="edit">edit</a>,
+          <a key="more">more</a>
+        ]}
+        key={item.id}>
         <List.Item.Meta
-          avatar={<Avatar size="small" icon="check" />}
-          title={<a href="">{item.title}</a>}
+          avatar={
+            <Avatar size="small" icon="check" />
+          }
+          title={<a href={"/admin/tasks/" + item.id}>{item.title}</a>}
           description={item.description}
         />
         <div>{item.creator.email}</div>

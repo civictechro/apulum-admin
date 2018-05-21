@@ -2,13 +2,10 @@ import * as React from 'react';
 
 import {Component} from 'react';
 import ReactMapGL, { Marker } from 'react-map-gl';
-
-import { incidents } from './incidents';
 import { Icon } from 'antd';
+import { AutoSizer } from 'react-virtualized/dist/commonjs/AutoSizer';
 
 interface IMapBoxViewport {
-  width: number;
-  height: number;
   latitude: number;
   longitude: number;
   zoom: number;
@@ -27,9 +24,22 @@ interface IMapBoxSettings {
   minPitch: number;
   maxPitch: number;
 }
+
+export interface IIncidentReport {
+  id: string;
+  title: string;
+  description: string;
+  status: string; // TODO: make enum
+  latitude: number;
+  longitude: number;
+  type: string; // TODO: make enum
+  comments: any[];
+}
+
 interface IIncidentMapProps {
   viewport: IMapBoxViewport;
   settings: IMapBoxSettings;
+  incidents?: IIncidentReport[];
 }
 
 interface IIncidentMapState {
@@ -51,16 +61,16 @@ class IncidentMap extends Component<IIncidentMapProps, IIncidentMapState> {
     this.setState({viewport: v})
   }
 
-  _renderMarker(incident: any, i: number) {
-    const {name, coordinates} = incident;
+  _renderMarker(incident: IIncidentReport, i: number) {
+    const {title, latitude, longitude } = incident;
 
     return (
-      <Marker key={i} longitude={coordinates[1]} latitude={coordinates[0]} >
+      <Marker key={i} longitude={longitude} latitude={latitude} >
         <div>
           <Icon
             type="environment"
-            style={{ fontSize: "20px", color: "#933" }}
-            title={name}
+            style={{ fontSize: "2em", color: "#d00" }}
+            title={title}
           />
         </div>
       </Marker>
@@ -68,17 +78,24 @@ class IncidentMap extends Component<IIncidentMapProps, IIncidentMapState> {
   }
 
   render() {
-    const {viewport, settings} = this.state;
+    const {viewport, settings } = this.state;
+    const { incidents } = this.props;
 
     return (
-      <ReactMapGL
-        {...viewport}
-        {...settings}
-        mapStyle="mapbox://styles/mapbox/light-v9"
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN as string}
-        onViewportChange={this.onViewportChange}>
-        { incidents.map(this._renderMarker) }
-      </ReactMapGL>
+      <AutoSizer>
+        {(args: any) => (
+          <ReactMapGL
+            width={args.width}
+            height={args.height}
+            {...viewport}
+            {...settings}
+            mapStyle="mapbox://styles/mapbox/dark-v9"
+            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN as string}
+            onViewportChange={this.onViewportChange}>
+              { (incidents as IIncidentReport[]).map(this._renderMarker) }
+          </ReactMapGL>
+        )}
+      </AutoSizer>
     );
   }
 }

@@ -28,8 +28,6 @@ class DashboardView extends Component<IDashboardViewProps, {}> {
     const { style } = this.props;
 
     const mapViewport = {
-      width: 400,
-      height: 200,
       latitude: 46.0688051,
       longitude: 23.5716845,
       zoom: 11
@@ -93,7 +91,6 @@ class DashboardView extends Component<IDashboardViewProps, {}> {
               content={<IncidentMap viewport={mapViewport} settings={mapSettings} />}
               title="Rapoarte cetățeni"
               description=""
-              style={{ maxWidth: mapViewport.width, overflow: 'hidden' }}
             />
           </Col>
           <Col span={6}>
@@ -111,7 +108,6 @@ class DashboardView extends Component<IDashboardViewProps, {}> {
               }
               title="Statistică turiști cetate"
               description=""
-              style={{ maxWidth: mapViewport.width, overflow: 'hidden' }}
             />
           </Col>
           <Col span={6}>
@@ -128,7 +124,6 @@ class DashboardView extends Component<IDashboardViewProps, {}> {
               }
               title="Statistică turiști cetate"
               description=""
-              style={{ maxWidth: mapViewport.width, overflow: 'hidden' }}
             />
           </Col>
           <Col span={6}>
@@ -145,7 +140,6 @@ class DashboardView extends Component<IDashboardViewProps, {}> {
               }
               title="Statistică turiști cetate"
               description=""
-              style={{ maxWidth: mapViewport.width, overflow: 'hidden' }}
             />
           </Col>
         </Row>

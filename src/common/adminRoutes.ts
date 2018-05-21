@@ -3,8 +3,16 @@ import ProfileView from "../views/ProfileView";
 import TasksView from "../views/TasksView";
 import TaskView from "../views/TaskView";
 import DashboardView from "../views/DashboardView";
+import CallCenterView from "../views/CallCenterView";
 
 export const adminRoutes = [
+  {
+    name: 'Dispecerat',
+    icon: 'customer-service',
+    path: '/admin/call-center',
+    showMenu: true,
+    view: CallCenterView,
+  },
   {
     name: 'Tasks',
     icon: 'layout',
