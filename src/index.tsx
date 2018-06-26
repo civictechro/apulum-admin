@@ -8,11 +8,11 @@ import { HttpLink } from 'apollo-link-http';
 import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 
-import App from './App';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 import { fragmentMatcher } from './utils/fragmentMatcher';
+import { Routes } from './routes';
 
 const client = new ApolloClient({
   link: ApolloLink.from([
@@ -39,7 +39,7 @@ const client = new ApolloClient({
 
 const WrappedApp = (
   <ApolloProvider client={client}>
-    <App />
+    <Routes />
   </ApolloProvider>
 );
 

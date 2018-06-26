@@ -1,0 +1,134 @@
+@import '~antd/lib/style/themes/default.less';
+@ease-in-out-circ: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+
+.container {
+  // ...
+}
+
+i.trigger {
+  font-size: 20px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: all 0.3s, padding 0s;
+  padding: 0 24px;
+  &:hover {
+    background: @primary-1;
+  }
+}
+
+.right {
+  float: right;
+  height: 100%;
+  .action {
+    cursor: pointer;
+    padding: 0 12px;
+    display: inline-block;
+    transition: all 0.3s;
+    height: 100%;
+    > i {
+      font-size: 16px;
+      vertical-align: middle;
+      color: @text-color;
+    }
+    &:hover,
+    &:global(.ant-popover-open) {
+      background: @primary-1;
+    }
+  }
+  .search {
+    padding: 0;
+    margin: 0 12px;
+    &:hover {
+      background: transparent;
+    }
+  }
+  .account {
+    .avatar {
+      margin: 20px 8px 20px 0;
+      color: @primary-color;
+      background: rgba(255, 255, 255, 0.85);
+      vertical-align: middle;
+    }
+  }
+}
+
+.headerIcon {
+  margin-left: 15px;
+}
+
+.headerWideIcon {
+  margin-left: -80px;
+}
+
+.search {
+  min-width: 40%;
+  display: inline-block;
+  width: unset;
+}
+
+.logo {
+  color: #fff;
+  font-size: 18px;
+  margin: 16px;
+  height: 64px;
+  position: relative;
+  line-height: 64px;
+  transition: all 0.3s;
+  overflow: hidden;
+  h1 {
+    display: inline-block;
+    padding-left: (@menu-collapsed-width - 32px) / 2;
+    vertical-align: middle;
+    margin: 0 0 0 12px;
+
+    background-image: linear-gradient(
+      103deg,
+      rgba(49, 220, 207, 1),
+      rgba(36, 79, 231, 1)
+    );
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: Montserrat, sans-serif;
+    font-size: 20px;
+  }
+}
+
+.sider {
+  min-height: 100vh;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+  position: relative;
+  z-index: 10;
+}
+
+.userMenuItem {
+  margin-left: 8px;
+}
+
+:global {
+  .drawer .drawer-content {
+    background: #001529;
+  }
+  .ant-menu-inline-collapsed {
+    & > .ant-menu-item .sider-menu-item-img + span,
+    &
+      > .ant-menu-item-group
+      > .ant-menu-item-group-list
+      > .ant-menu-item
+      .sider-menu-item-img
+      + span,
+    & > .ant-menu-submenu > .ant-menu-submenu-title .sider-menu-item-img + span {
+      max-width: 0;
+      display: inline-block;
+      opacity: 0;
+    }
+  }
+  .ant-menu-item .sider-menu-item-img + span,
+  .ant-menu-submenu-title .sider-menu-item-img + span {
+    transition: opacity 0.3s @ease-in-out, width 0.3s @ease-in-out;
+    opacity: 1;
+  }
+}

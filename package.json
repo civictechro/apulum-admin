@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@types/recharts": "^1.0.19",
+    "ant-design-pro": "^2.0.0-beta.1",
     "antd": "^3.5.1",
     "apollo-boost": "^0.1.6",
     "apollo-cache-inmemory": "^1.2.1",
@@ -12,11 +13,13 @@
     "apollo-link-error": "^1.0.9",
     "apollo-link-http": "^1.5.4",
     "d3-request": "^1.0.6",
-    "deck.gl": "^5.2.5",
+    "deck.gl": "^6.0.0-alpha.1",
+    "formik": "^0.11.11",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
     "js-md5": "^0.7.3",
     "mapbox": "^1.0.0-beta10",
+    "numeral": "^2.0.6",
     "react": "^16.3.2",
     "react-apollo": "^2.1.4",
     "react-dom": "^16.3.2",
@@ -24,13 +27,15 @@
     "react-router-dom": "^4.2.2",
     "react-scripts-ts": "2.15.1",
     "react-virtualized": "^9.19.0",
-    "recharts": "^1.0.0-beta.10"
+    "recharts": "^1.0.0-beta.10",
+    "yup": "^0.25.1"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "start": "react-app-rewired start --scripts-version react-scripts-ts",
+    "build": "react-app-rewired build --scripts-version react-scripts-ts",
+    "test": "react-app-rewired test --env=jsdom --scripts-version react-scripts-ts",
+    "eject": "react-scripts-ts eject",
+    "make-fragments": "node ./src/utils/makeIntrospectionFragmentTypes.js"
   },
   "devDependencies": {
     "@types/dotenv": "^4.0.3",
@@ -40,14 +45,21 @@
     "@types/mapbox": "^1.6.37",
     "@types/node": "^10.0.6",
     "@types/node-fetch": "^1.6.9",
+    "@types/numeral": "^0.0.22",
     "@types/prop-types": "^15.5.2",
     "@types/react": "^16.3.14",
     "@types/react-dom": "^16.0.5",
     "@types/react-map-gl": "^3.2.2",
     "@types/react-router-dom": "^4.2.6",
     "@types/react-virtualized": "^9.18.3",
+    "@types/yup": "^0.24.7",
+    "apollo-codegen": "^0.20.0",
+    "babel-plugin-import": "^1.8.0",
     "dotenv": "^5.0.1",
     "node-fetch": "^2.1.2",
+    "react-app-rewire-less": "^2.1.1",
+    "react-app-rewired": "^1.5.2",
+    "ts-import-plugin": "^1.5.4",
     "typescript": "^2.8.3"
   }
 }

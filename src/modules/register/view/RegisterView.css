@@ -1,0 +1,10 @@
+#register-form {
+  max-width: 300px;
+  margin: 0 auto;
+}
+#register-form .form-forgot {
+  float: right;
+}
+#register-form .form-button {
+  width: 100%;
+}

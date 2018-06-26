@@ -1,105 +1,97 @@
+
+
 /* tslint:disable */
-//  This file was automatically generated and should not be edited.
+// This file was automatically generated and should not be edited.
 
-export interface meQuery {
-  me:  {
-    id: string,
-    email: string,
-    firstName: string | null,
-    lastName: string | null,
-  } | null,
-};
+// ====================================================
+// GraphQL query operation: DashboardQuery
+// ====================================================
 
-export interface loginMutationVariables {
-  email: string,
-  password: string,
-};
+export interface DashboardQuery_incidentReports {
+  status: IncidentReportStatus | null;
+  title: string;
+  description: string;
+}
 
-export interface loginMutation {
-  login:  Array< {
-    path: string,
-    message: string,
-  } > | null,
-};
+export interface DashboardQuery {
+  incidentReports: DashboardQuery_incidentReports[] | null;  // List all incident reports in the system
+}
 
-export interface meLoginQuery {
-  me:  {
-    id: string,
-    email: string,
-  } | null,
-};
 
-export interface meOnProfileQuery {
-  me:  {
-    id: string,
-    email: string,
-    firstName: string | null,
-    lastName: string | null,
-  } | null,
-};
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
 
-export interface updateUserMutationMutationVariables {
-  id: string,
-  firstName?: string | null,
-  lastName?: string | null,
-};
+// ====================================================
+// GraphQL mutation operation: ForgotPasswordMutation
+// ====================================================
 
-export interface updateUserMutationMutation {
-  updateUser:  Array<( {
-      path: string,
-      message: string,
-    } | {
-      id: string,
-      email: string,
-      firstName: string | null,
-      lastName: string | null,
-    }
-  ) > | null,
-};
+export interface ForgotPasswordMutation {
+  sendForgotPasswordEmail: boolean | null;
+}
 
-export interface tasksQuery {
-  tasks:  Array< {
-    id: string,
-    title: string,
-    description: string,
-    creator:  {
-      id: string,
-      email: string,
-      firstName: string | null,
-      lastName: string | null,
-    },
-    asignee:  {
-      id: string,
-      email: string,
-      firstName: string | null,
-      lastName: string | null,
-    } | null,
-  } > | null,
-};
+export interface ForgotPasswordMutationVariables {
+  email: string;
+}
 
-export interface createTaskMutationMutationVariables {
-  userId: string,
-  title: string,
-  description: string,
-};
 
-export interface createTaskMutationMutation {
-  createTask:  Array<( {
-      path: string,
-      message: string,
-    } | {
-      id: string,
-      title: string,
-      description: string,
-    }
-  ) > | null,
-};
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
 
-export interface meOnTasksQuery {
-  me:  {
-    id: string,
-    email: string,
-    firstName: string | null,
-    lastName: string | null,
-  } | null,
-};
+// ====================================================
+// GraphQL mutation operation: LoginMutation
+// ====================================================
+
+export interface LoginMutation_login {
+  path: string;
+  message: string;
+}
+
+export interface LoginMutation {
+  login: LoginMutation_login[] | null;
+}
+
+export interface LoginMutationVariables {
+  email: string;
+  password: string;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: RegisterMutation
+// ====================================================
+
+export interface RegisterMutation_register {
+  path: string;
+  message: string;
+}
+
+export interface RegisterMutation {
+  register: RegisterMutation_register[] | null;
+}
+
+export interface RegisterMutationVariables {
+  email: string;
+  password: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+//==============================================================
+// START Enums and Input Objects
+//==============================================================
+
+// The status of the report, as marked by the city representatives
+export enum IncidentReportStatus {
+  DENIED = "DENIED",
+  NEW = "NEW",
+  SOLVED = "SOLVED",
+  TRIAGED = "TRIAGED",
+}
+
+//==============================================================
+// END Enums and Input Objects
+//==============================================================

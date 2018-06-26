@@ -59,7 +59,7 @@ interface IIncidentMapState {
 }
 
 const meQuery = gql`
-  query meOnTasks {
+  query meOnIncidentMap {
     me {
       id
       email
@@ -142,7 +142,7 @@ class IncidentMap extends Component<IIncidentMapProps, IIncidentMapState> {
 
     let title: any = {};
     let description: any = {};
-    
+
     return (
       <AutoSizer>
         {(args: any) => (
