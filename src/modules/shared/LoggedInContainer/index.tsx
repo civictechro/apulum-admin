@@ -69,7 +69,7 @@ export default class LoggedInContainer extends React.PureComponent<Props, {}> {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const breadcrumbs = this.props.location.pathname.split('/');
     const menu = (
       <Menu className="menu" selectedKeys={[]} onClick={this.onMenuClick}>

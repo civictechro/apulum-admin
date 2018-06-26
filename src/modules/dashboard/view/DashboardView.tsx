@@ -17,9 +17,14 @@ interface Props {
 }
 
 export default class DashboardView extends React.PureComponent<Props, {}> {
-  render() {
-    console.log(this.props);
+  onMarkerClick = (incident: any) => {
+    return (ev: any) => {
+      console.log('incident', incident);
+      console.log('propagated', ev);
+    }
+  }
 
+  render() {
     const {
       loading,
       incidentReports,
@@ -66,7 +71,16 @@ export default class DashboardView extends React.PureComponent<Props, {}> {
 
           <Row gutter={16} style={{ marginTop: 24 }}>
             <Col span={16} style={{ height: 400 }}>
-              <MapboxCard />
+              <MapboxCard
+                markers={incidentReports.map((incident: any) => (
+                  {
+                    latitude: incident.latitude,
+                    longitude: incident.longitude,
+                    key: incident.id,
+                    onClick: this.onMarkerClick(incident),
+                    style: { fontSize: 20 },
+                  }
+                ))} />
             </Col>
           </Row>
         </div>

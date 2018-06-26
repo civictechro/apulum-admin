@@ -23,9 +23,14 @@ class DashboardController extends React.PureComponent<ChildDataProps<Props, Dash
 const dashboardQuery = gql`
   query DashboardQuery {
     incidentReports {
+      id
       status
       title
       description
+      latitude
+      longitude
+      type
+      status
     }
     tasks {
       title
