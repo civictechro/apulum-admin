@@ -7,9 +7,6 @@ import LoggedInContainer from '../../shared/LoggedInContainer';
 import TrendCard from '../../shared/TrendCard';
 import { MapboxCard } from '../../shared/MapboxCard';
 
-// import IncidentLayer from './DashboardMapLayers';
-const IncidentLayer = require('./DashboardMapLayers');
-
 import './DashboardView.less';
 
 interface Props {
@@ -69,9 +66,7 @@ export default class DashboardView extends React.PureComponent<Props, {}> {
 
           <Row gutter={16} style={{ marginTop: 24 }}>
             <Col span={16} style={{ height: 400 }}>
-              <MapboxCard
-                layers={[IncidentLayer]}
-              />
+              <MapboxCard />
             </Col>
           </Row>
         </div>

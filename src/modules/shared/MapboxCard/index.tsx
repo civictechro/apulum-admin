@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import ReactMapGL from 'react-map-gl';
 import { AutoSizer } from 'react-virtualized';
-import DeckGLOverlay from '../DeckGLOverlay';
 
 const MAPBOX_STYLE = 'mapbox://styles/claudiuceia/cjiv1d3x162i92rno13ht2vao/';
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
@@ -13,7 +12,6 @@ interface State {
 
 interface Props {
   zoom?: number;
-  layers: [any];
 }
 
 const mapSettings = {
@@ -80,17 +78,8 @@ export class MapboxCard extends React.PureComponent<Props, State> {
               height={args.height}
               mapStyle={MAPBOX_STYLE}
               onViewportChange={(vw: any) => this.onViewportChange(vw)}
-              mapboxApiAccessToken={MAPBOX_TOKEN}>
-              {this.props.layers
-                ? (
-                  <DeckGLOverlay
-                    viewport={this.state.viewport}
-                    layers={this.props.layers}
-                  />
-                )
-                : null
-              }
-            </ReactMapGL>
+              mapboxApiAccessToken={MAPBOX_TOKEN}
+            />
           </div>
         )}
       </AutoSizer>

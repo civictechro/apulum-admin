@@ -4,7 +4,7 @@
     "exclude": [
       "config/**/*.js",
       "node_modules/**/*.ts",
-      "node_modules/**/*.js",
+      "node_modules",
       "src/utils/makeIntrospectionFragmentTypes.js"
     ]
   },

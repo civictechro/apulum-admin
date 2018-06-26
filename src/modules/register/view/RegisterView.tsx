@@ -7,7 +7,7 @@ import { withFormik, FormikErrors, FormikProps, Field, Form as FormikForm } from
 import * as yup from 'yup';
 import { Link } from 'react-router-dom';
 
-import { InputField } from '../../shared/InputField';
+import { InputField } from '../../shared/InputField/index';
 import './RegisterView.css';
 import { LoggedOutContainer } from '../../shared/LoggedOutContainer';
 

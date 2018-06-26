@@ -9,9 +9,3 @@ declare module 'mapbox' {
     geocodeForward(address: string, options?: any, callback?: Function): Promise<any>;
   }
 }
-
-declare module 'deck.gl';
-/*declare module 'DashboardMapLayers' {
-  const IncidentLayer: any;
-  export default IncidentLayer;
-}*/

@@ -5,7 +5,7 @@
   "dependencies": {
     "@types/recharts": "^1.0.19",
     "ant-design-pro": "^2.0.0-beta.1",
-    "antd": "^3.5.1",
+    "antd": "^3.6.4",
     "apollo-boost": "^0.1.6",
     "apollo-cache-inmemory": "^1.2.1",
     "apollo-client": "^2.3.1",
@@ -13,7 +13,6 @@
     "apollo-link-error": "^1.0.9",
     "apollo-link-http": "^1.5.4",
     "d3-request": "^1.0.6",
-    "deck.gl": "^6.0.0-alpha.1",
     "formik": "^0.11.11",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
@@ -60,6 +59,6 @@
     "react-app-rewire-less": "^2.1.1",
     "react-app-rewired": "^1.5.2",
     "ts-import-plugin": "^1.5.4",
-    "typescript": "^2.8.3"
+    "typescript": "^2.9.2"
   }
 }
