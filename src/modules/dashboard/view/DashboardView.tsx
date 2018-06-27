@@ -1,11 +1,12 @@
 import * as React from 'react';
 
-import { Row, Col, Card, Alert } from 'antd';
-// import { ScatterplotLayer } from 'deck.gl';
+import { Row, Col, Card, Alert, Tabs } from 'antd';
+const TabPane = Tabs.TabPane;
 
 import LoggedInContainer from '../../shared/LoggedInContainer';
 import TrendCard from '../../shared/TrendCard';
 import { MapboxCard } from '../../shared/MapboxCard';
+import { IncidentMap } from '../../shared/IncidentMap';
 
 import './DashboardView.less';
 
@@ -17,13 +18,6 @@ interface Props {
 }
 
 export default class DashboardView extends React.PureComponent<Props, {}> {
-  onMarkerClick = (incident: any) => {
-    return (ev: any) => {
-      console.log('incident', incident);
-      console.log('propagated', ev);
-    }
-  }
-
   render() {
     const {
       loading,
@@ -69,19 +63,19 @@ export default class DashboardView extends React.PureComponent<Props, {}> {
             </Col>
           </Row>
 
-          <Row gutter={16} style={{ marginTop: 24 }}>
-            <Col span={16} style={{ height: 400 }}>
-              <MapboxCard
-                markers={incidentReports.map((incident: any) => (
-                  {
-                    latitude: incident.latitude,
-                    longitude: incident.longitude,
-                    key: incident.id,
-                    onClick: this.onMarkerClick(incident),
-                    style: { fontSize: 20 },
-                  }
-                ))} />
-            </Col>
+          <Row gutter={0} style={{ marginTop: 24 }}>
+            <Tabs defaultActiveKey="1">
+              <TabPane tab="Incidente raportate" key="1">
+                <Col span={24} style={{ height: 400 }}>
+                  <IncidentMap incidents={incidentReports} style={{ height: 400 }} />
+                </Col>
+              </TabPane>
+              <TabPane tab="Adauga incidente" key="2">
+                <Col span={24} style={{ height: 400 }}>
+                  <MapboxCard />
+                </Col>
+              </TabPane>
+            </Tabs>
           </Row>
         </div>
       </LoggedInContainer>
