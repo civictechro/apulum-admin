@@ -14,7 +14,6 @@ export class MapboxMarker extends React.PureComponent<MapboxMarkerProps, {}> {
   render() {
     return(
       <Marker
-        key={this.props.key}
         longitude={this.props.longitude}
         latitude={this.props.latitude}>
         <Icon type="environment" onClick={this.props.onClick} style={this.props.style}/>

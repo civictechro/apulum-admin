@@ -37,7 +37,7 @@ export default class DashboardView extends React.PureComponent<Props, {}> {
     }
 
     return (
-      <LoggedInContainer  {...this.props}>
+      <LoggedInContainer {...this.props}>
         <div>
           <Row gutter={16}>
             <Col span={8}>

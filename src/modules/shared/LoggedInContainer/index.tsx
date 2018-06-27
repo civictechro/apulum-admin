@@ -18,6 +18,11 @@ const { Search } = Input;
 import { Footer as CustomFooter } from '../Footer';
 import { adminRoutes } from '../../../routes/adminRoutes';
 
+import gql from 'graphql-tag';
+import { graphql, DataProps } from 'react-apollo';
+import { UserQuery } from '../../../types/graphql-types';
+import { UserMenu } from '../UserMenu';
+
 import './index.less';
 
 interface Props {
@@ -25,9 +30,29 @@ interface Props {
   history: any;
   location: any;
   match: any;
+  data: {
+    userQuery: UserQuery;
+  },
+  loading?: boolean;
+  error?: any;
 }
 
-export default class LoggedInContainer extends React.PureComponent<Props, {}> {
+const userMenuItems = [
+  {
+    icon: 'user',
+    label: 'Settings',
+    path: '/settings',
+  },
+  {
+    icon: 'logout',
+    label: 'Logout',
+    path: '/logout',
+  }
+];
+
+class LoggedInContainer extends React.PureComponent<
+  DataProps<UserQuery, {}> & Props
+> {
 
   state = {
     collapsed: false,
@@ -65,32 +90,36 @@ export default class LoggedInContainer extends React.PureComponent<Props, {}> {
   };
 
   onMenuClick = (ev: any) => {
-    console.log(ev);
+    for (const val of userMenuItems) {
+      if (val.label === ev.key) {
+        this.props.history.push(val.path);
+        return;
+      }
+    }
   }
 
   render() {
-    // console.log(this.props);
+    if (this.props.loading) {
+      return <Spin />;
+    }
+
+    if (this.props.error) {
+      return <Spin />;
+    }
+
+    const { me } = this.props.data;
+
+    if (!me) {
+      this.props.history.push('/login');
+      return <Spin />;
+    }
+
     const breadcrumbs = this.props.location.pathname.split('/');
     const menu = (
-      <Menu className="menu" selectedKeys={[]} onClick={this.onMenuClick}>
-        <Menu.Item disabled={true}>
-          <Icon type="user" />
-          <span className="userMenuItem">Menu item</span>
-        </Menu.Item>
-        <Menu.Item disabled={true}>
-          <Icon type="setting" />
-          <span className="userMenuItem">Menu item</span>
-        </Menu.Item>
-        <Menu.Item key="triggerError">
-          <Icon type="close-circle" />
-          <span className="userMenuItem">Menu item</span>
-        </Menu.Item>
-        <Menu.Divider />
-        <Menu.Item key="logout">
-          <Icon type="logout" />
-          <span className="userMenuItem">Logout</span>
-        </Menu.Item>
-      </Menu>
+      <UserMenu
+        items={userMenuItems}
+        onClick={this.onMenuClick}
+      />
     );
 
     return (
@@ -137,7 +166,7 @@ export default class LoggedInContainer extends React.PureComponent<Props, {}> {
                 <Dropdown overlay={menu}>
                   <span className="action account">
                     <Avatar size="small" className="avatar" icon="user"/>
-                    <span className="name">Some Guy</span>
+                    <span className="name">{ me.email }</span>
                   </span>
                 </Dropdown>
               ) : (
@@ -172,3 +201,19 @@ export default class LoggedInContainer extends React.PureComponent<Props, {}> {
     );
   }
 }
+
+const userQuery = gql`
+  query UserQuery {
+    me {
+      id
+      email
+      firstName
+      lastName
+    }
+  }
+`;
+
+export default graphql<
+  Props,
+  UserQuery
+>(userQuery)(LoggedInContainer)

@@ -9,24 +9,28 @@ import './index.less';
 interface Props {
   children: any,
   id?: string,
-  otherProps?: any,
+  otherProps?: any;
 }
 
-export const LoggedOutContainer: React.SFC<Props> = ({ children, ...props }) => {
-  return (
-    <Layout className="logged-out-container" {...props} >
-      <Header style={{ background: 'transparent', textAlign: 'center', height: '220px', lineHeight: '220px' }}>
-        <h1>
-          <span className="fancyBgText">Kármán</span>
-          <Icon type="rocket" className="fancyBgText" style={{ marginLeft: 15 }}/>
-        </h1>
-      </Header>
-      <Content>
-        { children }
-      </Content>
-      <Footer>
-        <CustomFooter />
-      </Footer>
-    </Layout>
-  );
+export class LoggedOutContainer extends React.PureComponent<
+  Props
+> {
+  render() {
+    return (
+      <Layout className="logged-out-container">
+        <Header style={{ background: 'transparent', textAlign: 'center', height: '220px', lineHeight: '220px' }}>
+          <h1>
+            <span className="fancyBgText">Kármán</span>
+            <Icon type="rocket" className="fancyBgText" style={{ marginLeft: 15 }}/>
+          </h1>
+        </Header>
+        <Content>
+          { this.props.children }
+        </Content>
+        <Footer>
+          <CustomFooter />
+        </Footer>
+      </Layout>
+    );
+  }
 }

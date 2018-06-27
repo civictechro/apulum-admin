@@ -38,6 +38,12 @@ const dashboardQuery = gql`
     users {
       id
     }
+    me {
+      id
+      email
+      firstName
+      lastName
+    }
   }
 `;
 

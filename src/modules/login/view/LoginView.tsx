@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { Form, Icon, Button, Checkbox } from 'antd';
 const FormItem = Form.Item;
@@ -20,7 +21,17 @@ interface Props {
   submit: (values: FormValues) => Promise<FormikErrors<FormValues> | null>;
 }
 
-class LoginView extends React.PureComponent<FormikProps<FormValues> & Props> {
+interface RouteProps {
+  match: any;
+  location: any;
+  history: any;
+}
+
+class LoginView extends React.PureComponent<
+  FormikProps<FormValues>
+  & RouteComponentProps<RouteProps>
+  & Props
+> {
   render() {
     return (
       <LoggedOutContainer>
@@ -34,6 +45,7 @@ class LoginView extends React.PureComponent<FormikProps<FormValues> & Props> {
 
           <Field
             name="password"
+            type="password"
             prefix={ <Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} /> as any }
             placeholder="Password"
             component={InputField}
@@ -67,21 +79,27 @@ const validationSchema = yup.object().shape({
     .required()
 });
 
-export default withFormik<Props, FormValues>({
+const LoginViewWithFormik = withFormik<Props & RouteComponentProps<RouteProps>, FormValues>({
   validationSchema,
   mapPropsToValues: () => ({ email: '', password: ''}),
-  handleSubmit: async (values, { props, setErrors, setSubmitting }) => {
+  handleSubmit: async (values, { props, setErrors, setSubmitting, ...others }) => {
     await props.submit(values).then(
       _ => {
         setSubmitting(false);
+
+        props.history.push('/dashboard');
       },
       errors => {
         setSubmitting(false);
+
         const parsedErrors = {};
         errors.map((err: any) => parsedErrors[err.path] = err.message);
 
+        console.warn(parsedErrors);
         setErrors(parsedErrors);
       }
     )
   }
 })(LoginView)
+
+export default withRouter(LoginViewWithFormik);

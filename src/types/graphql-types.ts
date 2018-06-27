@@ -8,13 +8,35 @@
 // ====================================================
 
 export interface DashboardQuery_incidentReports {
+  id: string;
   status: IncidentReportStatus | null;
   title: string;
   description: string;
+  latitude: number;   // The latitude is stored in the DB with a 1m precision, which should suffice for any city report
+  longitude: number;  // The longitude is stored in the DB with a 1m precision, which should suffice for any city report
+  type: IncidentReportType | null;
+}
+
+export interface DashboardQuery_tasks {
+  title: string;
+}
+
+export interface DashboardQuery_users {
+  id: string;
+}
+
+export interface DashboardQuery_me {
+  id: string;
+  email: string;
+  firstName: string | null;
+  lastName: string | null;
 }
 
 export interface DashboardQuery {
   incidentReports: DashboardQuery_incidentReports[] | null;  // List all incident reports in the system
+  tasks: DashboardQuery_tasks[] | null;
+  users: DashboardQuery_users[] | null;
+  me: DashboardQuery_me | null;
 }
 
 
@@ -60,6 +82,18 @@ export interface LoginMutationVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: LogoutMutation
+// ====================================================
+
+export interface LogoutMutation {
+  logout: boolean | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: RegisterMutation
 // ====================================================
 
@@ -77,6 +111,25 @@ export interface RegisterMutationVariables {
   password: string;
 }
 
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: UserQuery
+// ====================================================
+
+export interface UserQuery_me {
+  id: string;
+  email: string;
+  firstName: string | null;
+  lastName: string | null;
+}
+
+export interface UserQuery {
+  me: UserQuery_me | null;
+}
+
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -90,6 +143,13 @@ export enum IncidentReportStatus {
   NEW = "NEW",
   SOLVED = "SOLVED",
   TRIAGED = "TRIAGED",
+}
+
+// A broad list of incident report types in the city
+export enum IncidentReportType {
+  OTHER = "OTHER",
+  PARKING = "PARKING",
+  TRASH = "TRASH",
 }
 
 //==============================================================
