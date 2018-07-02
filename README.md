@@ -1,6 +1,6 @@
 # Kármán CMS
 
-[![Total Alerts](https://img.shields.io/lgtm/alerts/g/civictechro/apulum-admin.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/civictechro/apulum-admin/alerts/) [![Language Grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/civictechro/apulum-admin.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/civictechro/apulum-admin/context:javascript)
+[![Heroku](https://badge.glitch.me/karman-cms/heroku)](https://karman-cms.herokuapp.com/login) [![Total Alerts](https://img.shields.io/lgtm/alerts/g/civictechro/apulum-admin.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/civictechro/apulum-admin/alerts/) [![Language Grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/civictechro/apulum-admin.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/civictechro/apulum-admin/context:javascript)
 
 Just a codename.
 
