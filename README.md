@@ -2,7 +2,7 @@
 
 [![Heroku](https://badge.glitch.me/karman-cms/heroku)](https://karman-cms.herokuapp.com/login) [![Total Alerts](https://img.shields.io/lgtm/alerts/g/civictechro/apulum-admin.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/civictechro/apulum-admin/alerts/) [![Language Grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/civictechro/apulum-admin.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/civictechro/apulum-admin/context:javascript)
 
-[![Uptime Robot ratio](https://img.shields.io/uptimerobot/ratio/m780646088-995f6902081d41f906bb79fc.svg)](https://fiipregatit.ro)
+[![Uptime Robot ratio](https://img.shields.io/uptimerobot/ratio/m780646088-995f6902081d41f906bb79fc.svg)](https://fiipregatit.ro) [![Slack](https://img.shields.io/badge/slack-%23team--alba--iulia-green.svg)](https://civictechro.slack.com/messages/C4Y24QL7M/) 
 
 Just a codename.
 
