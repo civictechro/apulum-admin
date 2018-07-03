@@ -65,6 +65,8 @@ $> yarn test
 #### Add Typescript typings for queries:
 
 ```
+$> ./gen-types.sh
+// OR
 $> apollo-codegen introspect-schema ${REACT_APP_GRAPHQL_HOST} --output src/schema.json
 $> apollo-codegen generate src/**/**/*.tsx --schema src/schema.json --target typescript --output src/types/graphql-types.ts
 ```
