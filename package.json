@@ -34,6 +34,8 @@
     "build": "react-app-rewired build --scripts-version react-scripts-ts",
     "test": "react-app-rewired test --env=jsdom --scripts-version react-scripts-ts",
     "eject": "react-scripts-ts eject",
+    "lint": "tslint --project .",
+    "lint:fix": "tslint --project . --fix",
     "make-fragments": "node ./src/utils/makeIntrospectionFragmentTypes.js"
   },
   "devDependencies": {
