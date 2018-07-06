@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Form, Icon, Button } from 'antd';
+import { Form, Icon, Button, Alert } from 'antd';
 const FormItem = Form.Item;
 
 import { withFormik, FormikErrors, FormikProps, Field, Form as FormikForm } from 'formik';
@@ -22,14 +22,29 @@ interface Props {
 
 class RegisterView extends React.PureComponent<FormikProps<FormValues> & Props> {
   render() {
+    const { isSubmitting, status } = this.props;
+    let confirmationBox = null;
+
+    if (status && status.hasRegistered) {
+      confirmationBox =
+        <Alert
+          message="Registered succesfully"
+          description="Please check your email to confirm email address."
+          type="success"
+          showIcon={true}
+        />;
+    }
+
     return (
       <LoggedOutContainer>
         <FormikForm id="register-form">
+          {confirmationBox}
           <Field
             name="email"
             prefix={ <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} /> as any }
             placeholder="Email"
             component={InputField}
+            disabled={isSubmitting}
           />
 
           <Field
@@ -37,13 +52,18 @@ class RegisterView extends React.PureComponent<FormikProps<FormValues> & Props> 
             prefix={ <Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} /> as any }
             placeholder="Password"
             component={InputField}
+            disabled={isSubmitting}
           />
 
           <FormItem>
             <Link className="form-forgot" to="/forgotPassword">
               Forgot password
             </Link>
-            <Button type="primary" htmlType="submit" className="form-button">
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="form-button"
+              loading={isSubmitting}>
               Register
             </Button>
             Or <Link to="/login">login now!</Link>
@@ -75,10 +95,13 @@ const validationSchema = yup.object().shape({
 export default withFormik<Props, FormValues>({
   validationSchema,
   mapPropsToValues: () => ({ email: '', password: ''}),
-  handleSubmit: async (values, { props, setErrors, setSubmitting }) => {
+  handleSubmit: async (values, { props, setErrors, setSubmitting, setStatus }) => {
     await props.submit(values).then(
       _ => {
         setSubmitting(false);
+        setStatus({
+          hasRegistered: true,
+        })
       },
       errors => {
         setSubmitting(false);

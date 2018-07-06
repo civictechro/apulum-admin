@@ -33,6 +33,8 @@ class LoginView extends React.PureComponent<
   & Props
 > {
   render() {
+    const { isSubmitting } = this.props;
+
     return (
       <LoggedOutContainer>
         <FormikForm id="login-form">
@@ -41,6 +43,7 @@ class LoginView extends React.PureComponent<
             prefix={ <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} /> as any }
             placeholder="Email"
             component={InputField}
+            disabled={isSubmitting}
           />
 
           <Field
@@ -49,6 +52,7 @@ class LoginView extends React.PureComponent<
             prefix={ <Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} /> as any }
             placeholder="Password"
             component={InputField}
+            disabled={isSubmitting}
           />
 
           <FormItem>
@@ -56,7 +60,11 @@ class LoginView extends React.PureComponent<
             <Link className="form-forgot" to="/forgotPassword">
               Forgot password
             </Link>
-            <Button type="primary" htmlType="submit" className="form-button">
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="form-button"
+              loading={isSubmitting}>
               Login
             </Button>
             Or <Link to="/register">register now!</Link>
@@ -91,6 +99,14 @@ const LoginViewWithFormik = withFormik<Props & RouteComponentProps<RouteProps>, 
       },
       errors => {
         setSubmitting(false);
+
+        if (!Array.isArray(errors)) {
+          console.warn(errors);
+          setErrors({
+            'email': errors.toString(),
+          });
+          return;
+        }
 
         const parsedErrors = {};
         errors.map((err: any) => parsedErrors[err.path] = err.message);
