@@ -40,7 +40,7 @@
     "make-fragments": "node ./src/utils/makeIntrospectionFragmentTypes.js"
   },
    "lint-staged": {
-      "*.ts": [
+      "*.tsx?": [
          "git add",
          "yarn lint:fix",
          "yarn test"
