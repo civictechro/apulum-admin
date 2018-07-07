@@ -14,7 +14,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { fragmentMatcher } from './utils/fragmentMatcher';
 import { Routes } from './routes';
  
-const client = new ApolloClient({
+const client = new ApolloClient ({
   link: ApolloLink.from([
     onError(({ graphQLErrors, networkError }) => {
       if (graphQLErrors) {
