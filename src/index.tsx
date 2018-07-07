@@ -8,13 +8,14 @@ import { HttpLink } from 'apollo-link-http';
 import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 
-import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 import { fragmentMatcher } from './utils/fragmentMatcher';
 import { Routes } from './routes';
  
-const client = new ApolloClient ({
+import './index.css';
+
+const client = new ApolloClient({
   link: ApolloLink.from([
     onError(({ graphQLErrors, networkError }) => {
       if (graphQLErrors) {
@@ -25,7 +26,7 @@ const client = new ApolloClient ({
         );
       }
 
-      if (networkError) {
+      if (networkError: number) {
         console.log(`[Network error]: ${networkError}`);
       }
     }),
