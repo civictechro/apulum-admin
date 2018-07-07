@@ -33,6 +33,7 @@
     "start": "react-app-rewired start --scripts-version react-scripts-ts",
     "build": "react-app-rewired build --scripts-version react-scripts-ts",
     "test": "react-app-rewired test --env=jsdom --scripts-version react-scripts-ts",
+    "test:precommit": "react-app-rewired test --env=jsdom --scripts-version react-scripts-ts --watchAll=false --passWithNoTests=true",
     "eject": "react-scripts-ts eject",
     "precommit": "lint-staged",
     "lint": "tslint --project .",
@@ -42,8 +43,7 @@
   "lint-staged": {
     "*.{ts,tsx}": [
       "yarn lint:fix",
-      "prettier --parser typescript --write",
-      "yarn test",
+      "yarn test:precommit",
       "git add"
     ]
   },
