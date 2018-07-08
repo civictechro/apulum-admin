@@ -2,6 +2,7 @@ import * as React from 'react';
 import IncidentComposer from '../IncidentComposer';
 import { MapboxCard } from '../MapboxCard';
 import { IncidentReportInput } from '../../../types/graphql-types';
+import { message } from 'antd';
 
 export interface IncidentPosition {
   latitude: number;
@@ -24,6 +25,15 @@ export default class IncidentMapComposer extends React.PureComponent<Props, Stat
     currentIncidentPosition: null,
     isEditingIncident: false,
   }
+
+  onDone = () => {
+    message.success('Raport adaugat cu succes');
+    this.setState({
+      isEditingIncident: false,
+      currentIncidentPosition: null,
+    });
+
+  };
 
   closeCurrentIncident = () => {
     this.setState({ isEditingIncident: false });
@@ -63,6 +73,7 @@ export default class IncidentMapComposer extends React.PureComponent<Props, Stat
           onSave={onSave as any}
           userId={userId}
           position={currentIncidentPosition}
+          onDone={this.onDone}
         />
       );
 

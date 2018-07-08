@@ -15,8 +15,9 @@ import * as yup from 'yup';
 import { Link } from 'react-router-dom';
 
 import { InputField } from '../../shared/FormikField/InputField';
-import './RegisterView.css';
 import { LoggedOutContainer } from '../../shared/LoggedOutContainer';
+
+import './RegisterView.css';
 
 interface FormValues {
   email: string;

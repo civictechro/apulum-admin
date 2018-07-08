@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import {
   DashboardQuery,
   IncidentReportCreation,
-  IncidentReportCreationVariables
+  IncidentReportCreationVariables,
 } from '../../../types/graphql-types';
 
 import {
@@ -19,7 +19,9 @@ export interface DashboardQueryProps {
 }
 
 export interface DashboardMutationProps {
-  createIncidentReport: (incidentReportInput: IncidentReportCreationVariables) => Promise<null>;
+  createIncidentReport: (
+    incidentReportInput: IncidentReportCreationVariables
+  ) => Promise<void>;
 }
 
 export interface DashboardChildrenParams {
@@ -40,10 +42,16 @@ class DashboardController extends React.PureComponent<
       variables: incidentReportInput
     });
 
-    if (response.data.createIncidentReport) {
+    const res = response.data.createIncidentReport;
+    if (!res || (res[0] as any).path) {
       return Promise.reject(response.data.createIncidentReport);
     }
-    return null;
+
+    if ((res[0] as any).id) {
+      this.props.data.refetch();
+    }
+
+    return;
   }
 
   render() {

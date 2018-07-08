@@ -34,19 +34,21 @@ interface Props {
   userId: string;
   onClose: ((event: any) => void);
   onSave: (data: IncidentReportInput) => Promise<FormikErrors<FormValues> | null>;
+  onDone: () => void;
 }
 
 class IncidentComposer extends React.PureComponent<FormikProps<FormValues> & Props, {}> {
   render() {
     const { onClose } = this.props;
-    const isSubmitting = false;
+    const { isSubmitting } = this.props;
 
     const saveButton = (
       <Button
         type="primary"
         htmlType="submit"
         className="form-button"
-        loading={isSubmitting}>
+        loading={isSubmitting}
+        disabled={isSubmitting}>
         Register
       </Button>
     );
@@ -55,8 +57,7 @@ class IncidentComposer extends React.PureComponent<FormikProps<FormValues> & Pro
       <Button
         type="ghost"
         onClick={onClose}
-        className="form-button"
-        loading={isSubmitting}>
+        className="form-button">
         Anulează
       </Button>
     );
@@ -140,6 +141,7 @@ export default withFormik<Props, FormValues>({
     await props.onSave(values).then(
       _ => {
         setSubmitting(false);
+        props.onDone();
       },
       errors => {
         setSubmitting(false);
