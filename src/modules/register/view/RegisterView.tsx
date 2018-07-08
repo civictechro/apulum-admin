@@ -49,6 +49,7 @@ class RegisterView extends React.PureComponent<FormikProps<FormValues> & Props> 
 
           <Field
             name="password"
+            type="password"
             prefix={ <Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} /> as any }
             placeholder="Password"
             component={InputField}
