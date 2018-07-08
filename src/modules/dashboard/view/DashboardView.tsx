@@ -4,7 +4,7 @@ import { Row, Col, Card, Alert, Tabs } from 'antd';
 const TabPane = Tabs.TabPane;
 
 import LoggedInContainer from '../../shared/LoggedInContainer';
-import TrendCard from '../../shared/TrendCard';
+import { TrendCard } from '../../shared/TrendCard';
 import { MapboxCard } from '../../shared/MapboxCard';
 import { IncidentMap } from '../../shared/IncidentMap';
 

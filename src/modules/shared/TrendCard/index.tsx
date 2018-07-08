@@ -17,7 +17,7 @@ interface TrendCardProps {
   labels?: [TrendLabel]
 }
 
-export default class TrendCard extends React.PureComponent<TrendCardProps> {
+export class TrendCard extends React.PureComponent<TrendCardProps> {
   // tslint:disable jsx-no-lambda
   render() {
     return(
