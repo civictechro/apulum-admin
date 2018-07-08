@@ -12,8 +12,23 @@ export const adminRoutes = [
   {
     name: 'Dispecerat',
     icon: 'customer-service',
-    path: '/dispecerat',
     showMenu: true,
-    component: CallCenterConnector
+    path: "/dispecerat",
+    children: [
+      {
+        name: 'Hartă',
+        icon: 'dot-chart',
+        showMenu: true,
+        path: '/dispecerat/harta',
+        component: CallCenterConnector,
+      },
+      {
+        name: 'Hartă 2',
+        icon: 'dot-chart',
+        showMenu: true,
+        path: '/dispecerat/harta2',
+        component: CallCenterConnector,
+      }
+    ]
   },
 ];

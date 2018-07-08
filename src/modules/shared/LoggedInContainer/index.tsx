@@ -12,6 +12,7 @@ import {
   Spin,
 } from 'antd';
 
+const SubMenu = Menu.SubMenu;
 const { Header, Sider, Footer, Content } = Layout;
 const { Search } = Input;
 
@@ -89,12 +90,28 @@ class LoggedInContainer extends React.PureComponent<
       return;
     }
 
-    return (
-      <Menu.Item key={element.path} onClick={this.onMenuNavigate}>
-        <Icon type={element.icon} />
-        <span>{element.name}</span>
-      </Menu.Item>
-    );
+    if (element.children) {
+      const title = (
+        <span>
+          <Icon type={element.icon} />
+          <span>{element.name}</span>
+        </span>
+      );
+
+      return (
+        <SubMenu
+          key={element.path}
+          title={title}>
+          {element.children.map((menuItem: any) => this.getMenuItem(menuItem))}
+        </SubMenu>
+      );
+    } else {
+      return (
+        <Menu.Item key={element.path} onClick={this.onMenuNavigate}>
+          <span>{element.name}</span>
+        </Menu.Item>
+      );
+    }
   };
 
   onMenuClick = (ev: any) => {
@@ -130,6 +147,8 @@ class LoggedInContainer extends React.PureComponent<
       />
     );
 
+    const openKeys = [`/${this.props.location.pathname.split('/')[1]}`];
+
     return (
       <Layout className="container">
         <Sider
@@ -151,6 +170,7 @@ class LoggedInContainer extends React.PureComponent<
           <Menu
             theme="dark"
             mode="inline"
+            defaultOpenKeys={openKeys}
             defaultSelectedKeys={[this.props.location.pathname]}>
             {adminRoutes.map(this.getMenuItem)}
           </Menu>

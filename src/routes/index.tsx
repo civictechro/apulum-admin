@@ -9,6 +9,23 @@ import { LogoutConnector } from '../modules/logout/LogoutConnector';
 
 import { adminRoutes } from './adminRoutes';
 
+const mapRoutes = (routes: any[]): any => {
+  return routes.map((route: any) => {
+    if (!route.children) {
+      return (
+        <Route
+          exact={true}
+          path={route.path}
+          component={ route.component }
+          key={ route.path }
+        />
+      );
+    }
+
+    return mapRoutes(route.children);
+  });
+}
+
 export const Routes = () => (
   <BrowserRouter>
     <Switch>
@@ -16,9 +33,7 @@ export const Routes = () => (
       <Route exact={true} path="/login" component={ LoginConnector } />
       <Route exact={true} path="/logout" component={ LogoutConnector } />
       <Route exact={true} path="/forgotPassword" component={ ForgotPasswordConnector } />
-      {adminRoutes.map((route: any) => (
-        <Route exact={true} path={route.path} component={ route.component } key={ route.path }/>
-      ))}
+      {mapRoutes(adminRoutes)}
       <Route component={ FourOhFour } />
     </Switch>
   </BrowserRouter>
