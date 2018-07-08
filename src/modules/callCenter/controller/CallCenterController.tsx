@@ -2,7 +2,7 @@ import * as React from 'react';
 import gql from 'graphql-tag';
 
 import {
-  DashboardQuery,
+  CallCenterQuery,
   IncidentReportCreation,
   IncidentReportCreationVariables,
 } from '../../../types/graphql-types';
@@ -15,27 +15,27 @@ import {
 } from 'react-apollo';
 import { incidentReportCreationMutation } from '../../../queries/incidentReportCreationMutation';
 
-export interface DashboardQueryProps {
-  dashboardQuery: any;
+export interface CallCenterQueryProps {
+  callCenterQuery: any;
 }
 
-export interface DashboardMutationProps {
+export interface CallCenterMutationProps {
   createIncidentReport: (
     incidentReportInput: IncidentReportCreationVariables
   ) => Promise<void>;
 }
 
-export interface DashboardChildrenParams {
-  queries: DashboardQueryProps;
-  mutations: DashboardMutationProps;
+export interface CallCenterChildrenParams {
+  queries: CallCenterQueryProps;
+  mutations: CallCenterMutationProps;
 }
 
 interface Props {
-  children: (params: DashboardChildrenParams) => JSX.Element | null;
+  children: (params: CallCenterChildrenParams) => JSX.Element | null;
 }
 
-class DashboardController extends React.PureComponent<
-  ChildDataProps<Props, DashboardQuery, {}>
+class CallCenterController extends React.PureComponent<
+  ChildDataProps<Props, CallCenterQuery, {}>
   & ChildMutateProps<Props, IncidentReportCreation, IncidentReportCreationVariables>
 > {
   createIncidentReport = async (incidentReportInput: IncidentReportCreationVariables) => {
@@ -60,7 +60,7 @@ class DashboardController extends React.PureComponent<
 
     return this.props.children({
       queries: {
-        dashboardQuery: data,
+        callCenterQuery: data,
       },
       mutations: {
         createIncidentReport: this.createIncidentReport
@@ -69,8 +69,8 @@ class DashboardController extends React.PureComponent<
   }
 }
 
-const dashboardQuery = gql`
-  query DashboardQuery {
+const callCenterQuery = gql`
+  query CallCenterQuery {
     incidentReports {
       id
       status
@@ -83,12 +83,6 @@ const dashboardQuery = gql`
       createdAt
       updatedAt
     }
-    tasks {
-      title
-    }
-    users {
-      id
-    }
     me {
       id
       email
@@ -99,10 +93,11 @@ const dashboardQuery = gql`
 `;
 
 export default compose(
-  graphql<Props, DashboardQuery>(dashboardQuery),
+  graphql<Props, CallCenterQuery>(callCenterQuery),
   graphql<
     Props,
     IncidentReportCreation,
     IncidentReportCreationVariables
   >(incidentReportCreationMutation)
-)(DashboardController)
+)(CallCenterController)
+

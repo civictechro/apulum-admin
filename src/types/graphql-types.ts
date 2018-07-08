@@ -4,6 +4,38 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: CallCenterQuery
+// ====================================================
+
+export interface CallCenterQuery_incidentReports {
+  id: string;
+  status: IncidentReportStatus | null;
+  title: string;
+  description: string;
+  latitude: number;   // The latitude is stored in the DB with a 1m precision, which should suffice for any city report
+  longitude: number;  // The longitude is stored in the DB with a 1m precision, which should suffice for any city report
+  type: IncidentReportType | null;
+  createdAt: any;
+  updatedAt: any;
+}
+
+export interface CallCenterQuery_me {
+  id: string;
+  email: string;
+  firstName: string | null;
+  lastName: string | null;
+}
+
+export interface CallCenterQuery {
+  incidentReports: CallCenterQuery_incidentReports[] | null;  // List all incident reports in the system
+  me: CallCenterQuery_me | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: DashboardQuery
 // ====================================================
 
