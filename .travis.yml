@@ -1,0 +1,16 @@
+language: node_js
+sudo: false
+node_js:
+  - "10"
+install:
+  - yarn
+
+jobs:
+  include:
+    - stage: Unit tests
+      node_js: "10"
+      script: yarn test:precommit
+
+    - stage: Produce coverage
+      node_js: "10"
+      script: yarn test:coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
