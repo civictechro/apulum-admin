@@ -16,6 +16,7 @@ A local government CMS, built on a modern stack, with a focus on migrating tedio
 
 `Coming soon`
 
+<img src="screencast.gif" >
 
 ### Built with
 
