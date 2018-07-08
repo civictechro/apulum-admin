@@ -12,6 +12,7 @@ interface State {
 }
 
 interface Props {
+  onClick?: ((ev: any) => void);
   zoom?: number;
   markers?: MapboxMarkerProps[] | undefined;
 }
@@ -45,25 +46,9 @@ export class MapboxCard extends React.PureComponent<Props, State> {
     }
   }
 
-  componentDidMount() {
-    window.addEventListener('resize', this.resize);
-    this.resize();
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.resize);
-  }
-
   onViewportChange = (viewport: any) => {
     this.setState({
       viewport: {...this.state.viewport, ...viewport}
-    });
-  }
-
-  resize = () => {
-    this.onViewportChange({
-      width: window.innerWidth,
-      height: window.innerHeight
     });
   }
 
@@ -78,6 +63,7 @@ export class MapboxCard extends React.PureComponent<Props, State> {
             <ReactMapGL
               {...this.state.viewport}
               {...mapSettings}
+              onClick={this.props.onClick}
               width={args.width}
               height={args.height}
               mapStyle={MAPBOX_STYLE}

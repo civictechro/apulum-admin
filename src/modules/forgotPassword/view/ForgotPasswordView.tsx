@@ -7,9 +7,10 @@ import { withFormik, FormikErrors, FormikProps, Field, Form as FormikForm } from
 import * as yup from 'yup';
 import { Link } from 'react-router-dom';
 
-import { InputField } from '../../shared/InputField/index';
-import './ForgotPasswordView.css';
 import { LoggedOutContainer } from '../../shared/LoggedOutContainer';
+import { InputField } from '../../shared/FormikField/InputField';
+
+import './ForgotPasswordView.css';
 
 interface FormValues {
   email: string;

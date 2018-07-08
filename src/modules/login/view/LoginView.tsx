@@ -7,7 +7,7 @@ const FormItem = Form.Item;
 import { withFormik, FormikErrors, FormikProps, Field, Form as FormikForm } from 'formik';
 import * as yup from 'yup';
 
-import { InputField } from '../../shared/InputField';
+import { InputField } from '../../shared/FormikField/InputField';
 import { LoggedOutContainer } from '../../shared/LoggedOutContainer';
 
 import './LoginView.css';

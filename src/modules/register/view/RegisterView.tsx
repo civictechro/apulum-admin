@@ -3,11 +3,18 @@ import * as React from 'react';
 import { Form, Icon, Button, Alert } from 'antd';
 const FormItem = Form.Item;
 
-import { withFormik, FormikErrors, FormikProps, Field, Form as FormikForm } from 'formik';
+import {
+  withFormik,
+  FormikErrors,
+  FormikProps,
+  Field,
+  Form as FormikForm
+} from 'formik';
+
 import * as yup from 'yup';
 import { Link } from 'react-router-dom';
 
-import { InputField } from '../../shared/InputField/index';
+import { InputField } from '../../shared/FormikField/InputField';
 import './RegisterView.css';
 import { LoggedOutContainer } from '../../shared/LoggedOutContainer';
 

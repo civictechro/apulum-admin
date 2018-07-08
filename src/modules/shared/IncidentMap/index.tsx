@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { IncidentStatusExpand, IncidentCard } from '../IncidentCard';
+import { IncidentCard } from '../IncidentCard';
+import { IncidentStatusExpand } from '../IncidentCard/constants';
 import { MapboxCard } from '../MapboxCard';
 import { MapboxMarkerProps } from '../MapboxMarker';
 

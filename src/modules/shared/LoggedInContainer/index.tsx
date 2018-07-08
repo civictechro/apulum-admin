@@ -25,14 +25,22 @@ import { UserMenu } from '../UserMenu';
 
 import './index.less';
 
+interface InheritedData {
+  [key: string]: any;
+}
+
+interface LocalData {
+  userQuery?: UserQuery;
+}
+
+type QLData = InheritedData & LocalData;
+
 interface Props {
   children: any;
   history: any;
   location: any;
   match: any;
-  data: {
-    userQuery: UserQuery;
-  },
+  data: QLData,
   loading?: boolean;
   error?: any;
 }

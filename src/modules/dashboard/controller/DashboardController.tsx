@@ -1,21 +1,61 @@
 import * as React from 'react';
 import gql from 'graphql-tag';
-import { DashboardQuery } from '../../../types/graphql-types';
-import { graphql, ChildDataProps } from 'react-apollo';
 
-interface Props {
-  children: (
-    data: {
-      dashboardQuery: any;
-    }
-  ) => JSX.Element | null;
+import {
+  DashboardQuery,
+  IncidentReportCreation,
+  IncidentReportCreationVariables
+} from '../../../types/graphql-types';
+
+import {
+  graphql,
+  ChildDataProps,
+  compose,
+  ChildMutateProps
+} from 'react-apollo';
+
+export interface DashboardQueryProps {
+  dashboardQuery: any;
 }
 
-class DashboardController extends React.PureComponent<ChildDataProps<Props, DashboardQuery, {}>> {
+export interface DashboardMutationProps {
+  createIncidentReport: (incidentReportInput: IncidentReportCreationVariables) => Promise<null>;
+}
+
+export interface DashboardChildrenParams {
+  queries: DashboardQueryProps;
+  mutations: DashboardMutationProps;
+}
+
+interface Props {
+  children: (params: DashboardChildrenParams) => JSX.Element | null;
+}
+
+class DashboardController extends React.PureComponent<
+  ChildDataProps<Props, DashboardQuery, {}>
+  & ChildMutateProps<Props, IncidentReportCreation, IncidentReportCreationVariables>
+> {
+  createIncidentReport = async (incidentReportInput: IncidentReportCreationVariables) => {
+    const response = await this.props.mutate({
+      variables: incidentReportInput
+    });
+
+    if (response.data.createIncidentReport) {
+      return Promise.reject(response.data.createIncidentReport);
+    }
+    return null;
+  }
+
   render() {
     const data = this.props.data;
+
     return this.props.children({
-      dashboardQuery: data,
+      queries: {
+        dashboardQuery: data,
+      },
+      mutations: {
+        createIncidentReport: this.createIncidentReport
+      }
     });
   }
 }
@@ -47,7 +87,26 @@ const dashboardQuery = gql`
   }
 `;
 
-export default graphql<
-  Props,
-  DashboardQuery
->(dashboardQuery)(DashboardController)
+const incidentReportCreationMutation = gql`
+  mutation IncidentReportCreation($input: IncidentReportInput!) {
+    createIncidentReport(input: $input) {
+      ...on Error{
+        path
+        message
+      }
+      ...on IncidentReport {
+        id
+      }
+    }
+  }
+`;
+
+export default compose(
+  graphql<Props, DashboardQuery>(dashboardQuery),
+  graphql<
+    Props,
+    IncidentReportCreation,
+    IncidentReportCreationVariables
+  >(incidentReportCreationMutation)
+)(DashboardController)
+

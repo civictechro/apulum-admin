@@ -1,6 +1,6 @@
 import * as React from 'react';
 import DashboardView from './view/DashboardView';
-import DashboardController from './controller/DashboardController';
+import DashboardController, { DashboardChildrenParams } from './controller/DashboardController';
 
 // controller -> connector -> view
 
@@ -14,7 +14,13 @@ export class DashboardConnector extends React.PureComponent<Props, {}> {
   render() {
     return (
       <DashboardController>
-        {(data) => <DashboardView data={data} {...this.props}/> }
+       {(data: DashboardChildrenParams) => (
+          <DashboardView
+            data={data.queries}
+            mutations={data.mutations}
+            {...this.props}
+          />
+        )}
       </DashboardController>
     );
   }
