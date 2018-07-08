@@ -1,6 +1,6 @@
 /* config-overrides.js */
 const tsImportPluginFactory = require('ts-import-plugin')
-const { getLoader, injectBabelPlugin } = require("react-app-rewired");
+const { getLoader } = require("react-app-rewired");
 const rewireLess = require('react-app-rewire-less');
 
 module.exports = {
@@ -22,18 +22,6 @@ module.exports = {
         }) ]
       })
     };
-
-
-  /*   tsLoader.options = {
-      getCustomTransformers: () => ({
-        before: [ tsImportPluginFactory({
-          camel2DashComponentName: false,
-          libraryDirectory: 'lib',
-          libraryName: 'ant-design-pro',
-          style: true,
-        }) ]
-      })
-    }; */
 
     config = rewireLess.withLoaderOptions({
       javascriptEnabled: true,
