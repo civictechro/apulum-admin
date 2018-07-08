@@ -4,5 +4,5 @@ import { IconLabel } from '../';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<IconLabel />, div);
+  ReactDOM.render(<IconLabel icon="test" label="test" />, div);
 });

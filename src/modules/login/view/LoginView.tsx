@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { withRouter, RouteComponentProps, Link } from 'react-router-dom';
 
 import { Form, Icon, Button, Checkbox } from 'antd';
 const FormItem = Form.Item;
 
 import { withFormik, FormikErrors, FormikProps, Field, Form as FormikForm } from 'formik';
 import * as yup from 'yup';
-import { Link } from 'react-router-dom';
 
 import { InputField } from '../../shared/InputField';
-import './LoginView.css';
 import { LoggedOutContainer } from '../../shared/LoggedOutContainer';
+
+import './LoginView.css';
 
 interface FormValues {
   email: string;

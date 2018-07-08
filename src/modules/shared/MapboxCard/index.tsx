@@ -89,7 +89,7 @@ export class MapboxCard extends React.PureComponent<Props, State> {
                   longitude={marker.longitude}
                   onClick={marker.onClick}
                   key={'marker-' + marker.key}
-                  style={Object.assign({ color: "#f00" }, marker.style)}
+                  style={{ color: "#f00", ...marker.style}}
                 />
               ))}
             </ReactMapGL>

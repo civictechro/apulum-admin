@@ -4,5 +4,5 @@ import { LoggedOutContainer } from '../';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<LoggedOutContainer />, div);
+  ReactDOM.render(<LoggedOutContainer><span>Test</span></LoggedOutContainer>, div);
 });
