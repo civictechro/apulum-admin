@@ -14,8 +14,8 @@ const mapRoutes = (routes: any[]): any => {
     if (!route.children) {
       return (
         <Route
-          exact={true}
-          path={route.path}
+          exact={ route.exact }
+          path={ route.path }
           component={ route.component }
           key={ route.path }
         />

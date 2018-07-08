@@ -4,8 +4,8 @@ import ReactMapGL from 'react-map-gl';
 import { AutoSizer } from 'react-virtualized';
 import { MapboxMarker, MapboxMarkerProps } from '../MapboxMarker';
 
-const MAPBOX_STYLE = 'mapbox://styles/claudiuceia/cjiv1d3x162i92rno13ht2vao/';
-const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
+export const MAPBOX_STYLE = 'mapbox://styles/claudiuceia/cjiv1d3x162i92rno13ht2vao/';
+export const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
 interface State {
   viewport: any;
@@ -15,6 +15,8 @@ interface Props {
   onClick?: ((ev: any) => void);
   zoom?: number;
   markers?: MapboxMarkerProps[] | undefined;
+  latitude?: number;
+  longitude?: number;
 }
 
 const mapSettings = {
@@ -38,8 +40,8 @@ export class MapboxCard extends React.PureComponent<Props, State> {
       viewport: {
         width: window.innerWidth,
         height: window.innerHeight,
-        latitude: 46.0688051,
-        longitude: 23.5716845,
+        latitude: this.props.latitude || 46.0688051,
+        longitude: this.props.longitude || 23.5716845,
         zoom: this.props.zoom || 12,
         maxZoom: 18
       },

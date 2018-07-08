@@ -1,7 +1,7 @@
 import * as React from 'react';
 import IncidentComposer from '../IncidentComposer';
 import { MapboxCard } from '../MapboxCard';
-import { IncidentReportInput } from '../../../types/graphql-types';
+import { IncidentReportInput } from '../../../types/graphql-shared-types';
 import { message } from 'antd';
 
 export interface IncidentPosition {

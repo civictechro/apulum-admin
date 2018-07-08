@@ -5,7 +5,7 @@ const Option = Select.Option;
 
 import { IncidentTypeExpand } from '../IncidentCard/constants';
 import { IncidentPosition } from '../IncidentMapComposer';
-import { IncidentReportInput } from '../../../types/graphql-types';
+import { IncidentReportInput } from '../../../types/graphql-shared-types';
 
 import {
   withFormik,

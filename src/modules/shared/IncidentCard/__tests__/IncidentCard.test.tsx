@@ -7,6 +7,7 @@ import { IncidentReportType, IncidentReportStatus } from '../../../../types/grap
 it('renders without crashing', () => {
   const div = document.createElement('div');
   const mockIncident = {
+    id: "id",
     latitude: 1,
     longitude: 1,
     title: "",

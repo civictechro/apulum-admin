@@ -3,9 +3,12 @@ import gql from 'graphql-tag';
 
 import {
   DashboardQuery,
+} from '../../../types/graphql-types';
+
+import {
   IncidentReportCreation,
   IncidentReportCreationVariables,
-} from '../../../types/graphql-types';
+} from '../../../types/graphql-shared-types';
 
 import {
   graphql,

@@ -1,12 +1,14 @@
 import { DashboardConnector } from "../modules/dashboard/DashboardConnector";
 import { CallCenterConnector } from "../modules/callCenter/CallCenterConnector";
+import { IncidentReportConnector } from "../modules/incidentReport/IncidentReportConnector";
 
-export const adminRoutes = [
+export const adminRoutes: any = [
   {
     name: 'Dashboard',
     icon: 'dashboard',
     path: '/dashboard',
     showMenu: true,
+    exact: true,
     component: DashboardConnector
   },
   {
@@ -16,19 +18,29 @@ export const adminRoutes = [
     path: "/dispecerat",
     children: [
       {
-        name: 'Hartă',
+        name: 'Hartă incidente',
         icon: 'dot-chart',
         showMenu: true,
+        exact: true,
         path: '/dispecerat/harta',
         component: CallCenterConnector,
       },
       {
-        name: 'Hartă 2',
-        icon: 'dot-chart',
+        name: 'Management incidente',
+        icon: 'calendar',
         showMenu: true,
-        path: '/dispecerat/harta2',
-        component: CallCenterConnector,
-      }
+        exact: false,
+        path: '/dispecerat/incidente/',
+        component: IncidentReportConnector,
+      },
+      {
+        name: 'Management incidente',
+        icon: 'calendar',
+        showMenu: false,
+        exact: true,
+        path: '/dispecerat/incidente/:id',
+        component: IncidentReportConnector,
+      },
     ]
   },
 ];
