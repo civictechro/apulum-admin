@@ -7,4 +7,6 @@ export interface IncidentReport {
   longitude: number;
   type: IncidentReportType;
   status: IncidentReportStatus;
+  createdAt?: string;
+  updatedAt?: string;
 }

@@ -4,7 +4,7 @@ import { ChartCard, Field } from 'ant-design-pro/lib/Charts';
 import { Icon, Tooltip } from 'antd';
 import numeral from 'numeral';
 
-import { TrendLabel } from '../TrendLabel';
+// import { TrendLabel } from '../TrendLabel';
 
 import './index.less';
 
@@ -14,7 +14,7 @@ interface TrendCardProps {
   value: number;
   footerValue?: number;
   footerLabel?: string;
-  labels?: [TrendLabel]
+  labels?: React.ReactNode[]
 }
 
 export class TrendCard extends React.PureComponent<TrendCardProps> {

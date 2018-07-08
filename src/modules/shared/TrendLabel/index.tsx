@@ -12,6 +12,7 @@ interface TrendLabelProps {
   direction: TrendDirection;
   flagStyle?: React.CSSProperties;
   value: number;
+  isPercentage?: boolean;
 }
 
 export class TrendLabel extends React.PureComponent<TrendLabelProps> {
@@ -22,7 +23,7 @@ export class TrendLabel extends React.PureComponent<TrendLabelProps> {
         <Trend
           flag={ this.props.direction }
           style={ this.props.flagStyle || { marginLeft: 8, color: "rgba(0,0,0,.85)" }}>
-          { this.props.value }%
+          { this.props.value }{this.props.isPercentage ? '%' : null }
         </Trend>
       </span>
     );

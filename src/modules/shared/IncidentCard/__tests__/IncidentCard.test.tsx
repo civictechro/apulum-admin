@@ -12,7 +12,7 @@ it('renders without crashing', () => {
     title: "",
     description: "",
     type: IncidentReportType.OTHER,
-    status: IncidentReportStatus.NEW
+    status: IncidentReportStatus.NEW,
   };
 
   ReactDOM.render(

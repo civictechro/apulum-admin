@@ -15,6 +15,8 @@ export interface DashboardQuery_incidentReports {
   latitude: number;   // The latitude is stored in the DB with a 1m precision, which should suffice for any city report
   longitude: number;  // The longitude is stored in the DB with a 1m precision, which should suffice for any city report
   type: IncidentReportType | null;
+  createdAt: any;
+  updatedAt: any;
 }
 
 export interface DashboardQuery_tasks {

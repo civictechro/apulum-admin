@@ -79,6 +79,8 @@ const dashboardQuery = gql`
       longitude
       type
       status
+      createdAt
+      updatedAt
     }
     tasks {
       title

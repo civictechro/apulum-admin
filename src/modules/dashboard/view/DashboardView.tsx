@@ -14,6 +14,10 @@ import {
 } from '../controller/DashboardController';
 
 import './DashboardView.less';
+import { TrendLabel, TrendDirection } from '../../shared/TrendLabel';
+import { IncidentReport } from '../../shared/IncidentCard/types';
+
+const ONE_DAY = 60 * 60 * 24 * 1000;
 
 interface Props {
   history: any;
@@ -49,7 +53,30 @@ export default class DashboardView extends React.PureComponent<Props, {}> {
       return <Alert message="Error" type="error" />;
     }
 
-    console.log(this.props);
+    const now = Date.now();
+    const createdTodayCounter = incidentReports.reduce((accu: number, incident: IncidentReport) => {
+      if (!incident.createdAt) {
+        return accu;
+      }
+
+      const incidentDate = Date.parse(incident.createdAt);
+      if (now - incidentDate <= ONE_DAY) {
+        return accu+1;
+      }
+
+      console.log('anyone here?')
+      return accu;
+    }, 0);
+
+    const label = [
+      <TrendLabel
+        title="În ultimele 24h"
+        direction={TrendDirection.Up}
+        value={createdTodayCounter}
+        key={createdTodayCounter}
+      />,
+    ];
+
     return (
       <LoggedInContainer {...this.props}>
         <div>
@@ -59,6 +86,7 @@ export default class DashboardView extends React.PureComponent<Props, {}> {
                 title="Incidente raportate"
                 description="Numarul de incidente raportate de catre cetateni in dispecerat"
                 value={incidentReports.length}
+                labels={label}
               />
             </Col>
             <Col span={8}>
