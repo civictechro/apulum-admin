@@ -180,6 +180,25 @@ export interface LogoutMutation {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: ProfileQuery
+// ====================================================
+
+export interface ProfileQuery_me {
+  id: string;
+  email: string;
+  firstName: string | null;
+  lastName: string | null;
+}
+
+export interface ProfileQuery {
+  me: ProfileQuery_me | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: RegisterMutation
 // ====================================================
 

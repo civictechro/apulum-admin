@@ -1,6 +1,7 @@
 import { DashboardConnector } from "../modules/dashboard/DashboardConnector";
 import { CallCenterConnector } from "../modules/callCenter/CallCenterConnector";
 import { IncidentReportConnector } from "../modules/incidentReport/IncidentReportConnector";
+import { ProfileConnector } from "../modules/profile/ProfileConnector";
 
 export const adminRoutes: any = [
   {
@@ -42,5 +43,13 @@ export const adminRoutes: any = [
         component: IncidentReportConnector,
       },
     ]
+  },
+  {
+    name: 'Profil',
+    icon: 'user',
+    path: '/profil',
+    showMenu: true,
+    exact: true,
+    component: ProfileConnector
   },
 ];
