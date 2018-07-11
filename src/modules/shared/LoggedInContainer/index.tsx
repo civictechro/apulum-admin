@@ -50,7 +50,7 @@ const userMenuItems = [
   {
     icon: 'user',
     label: 'Settings',
-    path: '/settings',
+    path: '/profil',
   },
   {
     icon: 'logout',
