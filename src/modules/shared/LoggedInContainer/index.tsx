@@ -108,6 +108,7 @@ class LoggedInContainer extends React.PureComponent<
     } else {
       return (
         <Menu.Item key={element.path} onClick={this.onMenuNavigate}>
+          <Icon type={element.icon} />
           <span>{element.name}</span>
         </Menu.Item>
       );

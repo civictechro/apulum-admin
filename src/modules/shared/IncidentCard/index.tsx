@@ -3,6 +3,7 @@ import { IconLabel } from '../IconLabel';
 import { Icon, Card } from 'antd';
 import { IncidentReport } from './types';
 import { IncidentStatusExpand, IncidentTypeExpand } from './constants';
+import { Link } from 'react-router-dom';
 
 interface Props {
   incident: IncidentReport;
@@ -23,7 +24,9 @@ export class IncidentCard extends React.PureComponent<Props> {
           </a>
         }
         actions={[
-          <Icon type="edit" key="edit" />,
+          <Link to={`/dispecerat/incidente/${incident.id}`} key="edit" >
+            <Icon type="edit"/>
+          </Link>,
           <Icon type="message" key="message" />,
           <Icon type="ellipsis" key="ellipsis" />
         ]}>

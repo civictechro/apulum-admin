@@ -12,6 +12,7 @@ import {StaticMap} from 'react-map-gl';
 import './IncidentReportView.less';
 import { MAPBOX_TOKEN, MAPBOX_STYLE } from '../../shared/MapboxCard';
 import { IncidentReportQuery_incidentReports } from '../../../types/graphql-types';
+import { Link } from 'react-router-dom';
 
 interface Props {
   history: any;
@@ -42,7 +43,9 @@ export default class IncidentReportView extends React.PureComponent<Props, {}> {
       <List.Item
         key={report.title}
         actions={[
-          <IconText type="edit" text="Actualizează" key="1"/>,
+          <Link to={`/dispecerat/incidente/${report.id}`} key="1">
+            <IconText type="edit" text="Actualizează"/>
+          </Link>,
           <IconText type="message" text={commentCount}  key="2"/>
         ]}
         extra={
