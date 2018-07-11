@@ -24,7 +24,6 @@ export class IncidentMap extends React.PureComponent<Props, State> {
 
   onMarkerClick = (incident: any) => {
     return (ev: any) => {
-      console.log(incident);
       const { selectedIncident } = this.state;
 
       if (!selectedIncident || selectedIncident.id !== incident.id) {
@@ -51,7 +50,7 @@ export class IncidentMap extends React.PureComponent<Props, State> {
       longitude: incident.longitude,
       key: incident.id,
       onClick: this.onMarkerClick(incident),
-      style: { fontSize: 20, color: IncidentStatusExpand[incident.status].color },
+      style: { fontSize: 10, color: IncidentStatusExpand[incident.status].color },
     };
   }
 

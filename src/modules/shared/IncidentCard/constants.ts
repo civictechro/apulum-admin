@@ -1,22 +1,22 @@
 
 export const IncidentStatusExpand = {
   "NEW": {
-    color: "#f0f",
+    color: "#008ae5",
     text: "Incident nou",
     icon: "exclamation-circle-o",
   },
   "TRIAGED": {
-    color: "#f0f",
+    color: "#ffa500",
     text: "Incident triat",
     icon: "pause-circle-o",
   },
   "SOLVED": {
-    color: "#fff",
+    color: "#33cc00",
     text: "Incident rezolvat",
     icon: "check-circle-o",
   },
   "DENIED": {
-    color: "#00f",
+    color: "#c33",
     text: "Incident refuzat",
     icon: "close-circle-o",
   }
