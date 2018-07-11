@@ -45,8 +45,8 @@
   "lint-staged": {
     "*.{ts,tsx}": [
       "yarn lint:fix",
-      "yarn test:precommit",
-      "git add"
+      "git add",
+      "yarn test:precommit"
     ]
   },
   "devDependencies": {
