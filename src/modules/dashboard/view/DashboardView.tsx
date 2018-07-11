@@ -64,7 +64,6 @@ export default class DashboardView extends React.PureComponent<Props, {}> {
         return accu+1;
       }
 
-      console.log('anyone here?')
       return accu;
     }, 0);
 
