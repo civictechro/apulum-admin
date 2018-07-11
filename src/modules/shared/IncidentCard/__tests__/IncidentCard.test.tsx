@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { IncidentCard } from '../';
+import { IncidentCard } from '..';
 import { IncidentReportType, IncidentReportStatus } from '../../../../types/graphql-types';
+import { BrowserRouter } from 'react-router-dom';
 
 // tslint:disable jsx-no-lambda
 it('renders without crashing', () => {
@@ -17,10 +18,12 @@ it('renders without crashing', () => {
   };
 
   ReactDOM.render(
-    <IncidentCard
-      incident={mockIncident}
-      onClose={_ => { return; }}
-    />,
+    <BrowserRouter>
+      <IncidentCard
+        incident={mockIncident}
+        onClose={_ => { return; }}
+      />
+    </BrowserRouter>,
     div
   );
 });

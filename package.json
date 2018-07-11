@@ -52,6 +52,7 @@
   "devDependencies": {
     "@types/dotenv": "^4.0.3",
     "@types/graphql": "^0.13.1",
+    "@types/history": "^4.6.2",
     "@types/jest": "^22.2.3",
     "@types/js-md5": "^0.4.2",
     "@types/mapbox": "^1.6.37",
