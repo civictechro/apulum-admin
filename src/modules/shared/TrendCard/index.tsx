@@ -38,11 +38,7 @@ export class TrendCard extends React.PureComponent<TrendCardProps> {
             : null
           }
           contentHeight={46}>
-          {this.props.labels && this.props.labels.map((label) => (
-            <span style={{ marginRight: 16 }}>
-              { label }
-            </span>
-          ))}
+          {this.props.labels && this.props.labels.map((label) => label)}
         </ChartCard>
       </div>
     );
