@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@types/recharts": "^1.0.19",
-    "ant-design-pro": "^2.0.0-beta.1",
+    "ant-design-pro": "2.0.0",
     "antd": "^3.6.4",
     "apollo-boost": "^0.1.6",
     "apollo-cache-inmemory": "^1.2.1",
@@ -21,13 +21,14 @@
     "numeral": "^2.0.6",
     "react": "^16.3.2",
     "react-apollo": "^2.1.4",
-    "react-dom": "^16.3.2",
+    "react-dom": "16.3.3",
     "react-fontawesome": "^1.6.1",
     "react-map-gl": "^3.2.7",
     "react-router-dom": "^4.2.2",
     "react-scripts-ts": "4.0.1",
     "react-virtualized": "^9.19.0",
     "recharts": "^1.0.0-beta.10",
+    "snyk": "^1.105.1",
     "yup": "^0.25.1"
   },
   "scripts": {
