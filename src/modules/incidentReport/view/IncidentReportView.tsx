@@ -1,8 +1,6 @@
 import * as React from 'react';
 
-import { Card, Alert, List, Icon, Layout, Menu } from 'antd';
-const { Content, Sider } = Layout;
-const { SubMenu } = Menu;
+import { Card, Alert, List, Icon } from 'antd';
 
 import LoggedInContainer from '../../shared/LoggedInContainer';
 import {
@@ -15,8 +13,6 @@ import './IncidentReportView.less';
 import { MAPBOX_TOKEN, MAPBOX_STYLE } from '../../shared/MapboxCard';
 import { IncidentReportQuery_incidentReports } from '../../../types/graphql-types';
 import { Link } from 'react-router-dom';
-import { IncidentStatusExpand } from '../../shared/IncidentCard/constants';
-import { IncidentReport } from '../../shared/IncidentCard/types';
 
 interface Props {
   history: any;
@@ -73,35 +69,6 @@ export default class IncidentReportView extends React.PureComponent<Props, {}> {
     );
   }
 
-  buildMenu = () => {
-    const { incidentReports } = this.props.data.incidentReportQuery;
-
-    return Object.keys(IncidentStatusExpand).map((key, _) => (
-      <SubMenu
-        key={IncidentStatusExpand[key].text}
-        title={
-          <span>
-            <Icon type={IncidentStatusExpand[key].icon} style={{ color: IncidentStatusExpand[key].color }}/>
-            {IncidentStatusExpand[key].text}
-          </span>
-        }>
-        {incidentReports.map((value: IncidentReport, idx: number) => {
-          console.log(key, value.title, value.status, idx, value.status === key);
-          if (value.status !== key) {
-            return null;
-          }
-
-          return (
-              <Menu.Item key={idx}>
-                <Link to={`/dispecerat/incidente/${value.id}`} key={idx}>{value.title}</Link>
-              </Menu.Item>
-          );
-        })}
-
-      </SubMenu>
-    ));
-  }
-
   render() {
     const {
       loading,
@@ -118,32 +85,21 @@ export default class IncidentReportView extends React.PureComponent<Props, {}> {
       return <Alert message="Error" type="error" />;
     }
 
-    // console.log(incidentReports)
+    console.log(incidentReports)
 
     return (
       <LoggedInContainer {...this.props}>
-        <Layout style={{ padding: '24px 0', background: '#fff' }}>
-          <Sider width={200} style={{ background: '#fff' }}>
-            <Menu
-              mode="inline"
-              defaultSelectedKeys={['1']}
-              defaultOpenKeys={['sub1']}
-              style={{ height: '100%' }}>
-              {this.buildMenu()}
-            </Menu>
-          </Sider>
-          <Content style={{ padding: '0 24px', minHeight: 280 }}>
-            <List
-              itemLayout="vertical"
-              size="large"
-              pagination={{
-                pageSize: 4,
-              }}
-              dataSource={incidentReports}
-              renderItem={this.renderIncident}
-            />
-          </Content>
-        </Layout>
+        <div style={{ background: '#fff', padding: 16 }}>
+        <List
+          itemLayout="vertical"
+          size="large"
+          pagination={{
+            pageSize: 4,
+          }}
+          dataSource={incidentReports}
+          renderItem={this.renderIncident}
+        />
+        </div>
       </LoggedInContainer>
     );
   }

@@ -44,8 +44,6 @@ export default class DashboardView extends React.PureComponent<Props, {}> {
       me
     } = this.props.data.dashboardQuery;
 
-    console.log(me);
-
     if (loading) {
       return <Card loading={ true } />;
     }
