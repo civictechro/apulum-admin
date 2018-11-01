@@ -16,6 +16,7 @@
     "ordered-imports": false,
     "interface-name": false,
     "no-submodule-imports": false,
-    "no-var-requires": true
+    "no-var-requires": true,
+    "eslint.packageManager": "yarn"
   }
 }
