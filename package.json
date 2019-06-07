@@ -21,14 +21,15 @@
     "numeral": "^2.0.6",
     "react": "^16.3.2",
     "react-apollo": "^2.1.7",
-    "react-dom": "^16.3.2",
+    "react-dom": "^16.3.3",
     "react-fontawesome": "^1.6.1",
     "react-map-gl": "^3.2.7",
     "react-router-dom": "^4.2.2",
-    "react-scripts-ts": "2.15.1",
+    "react-scripts-ts": "4.0.1",
     "react-virtualized": "^9.19.0",
     "recharts": "^1.0.0",
-    "yup": "^0.25.1"
+    "yup": "^0.25.1",
+    "snyk": "^1.174.0"
   },
   "scripts": {
     "start": "react-app-rewired start --scripts-version react-scripts-ts",
@@ -40,7 +41,9 @@
     "precommit": "lint-staged",
     "lint": "tslint --project .",
     "lint:fix": "tslint --project . --fix",
-    "make-fragments": "node ./src/utils/makeIntrospectionFragmentTypes.js"
+    "make-fragments": "node ./src/utils/makeIntrospectionFragmentTypes.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -79,5 +82,6 @@
     "react-app-rewired": "^1.5.2",
     "ts-import-plugin": "^1.5.4",
     "typescript": "^2.9.2"
-  }
+  },
+  "snyk": true
 }
